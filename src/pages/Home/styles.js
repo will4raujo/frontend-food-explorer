@@ -29,29 +29,97 @@ export const Banner = styled.div`
   background-color: ${({ theme }) => theme.COLORS.Dark_1000};
   
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 
   position: relative;
 
   > img {
     position: absolute;
-    bottom: 0;
     left: -30px;
+    bottom: 0;
   }
 
   > .text-container {
+    margin-left: 15rem;
+    
+    > h1 {
+      font-size: clamp(1.8rem, 2.5vw , 4rem);
+      font-weight: 500;
+      line-height: 140%;
       font-family: ${({ theme }) => theme.FONTS.Poppins};
-      margin-left: 15rem;
-      > h1 {
-        font-size: 1.8rem;
-        font-weight: 500;
-     }
-
-      > p {
-          font-size: 1.2rem;
-          font-weight: 400;
+        
       }
+      
+      > p {
+        font-size: clamp(1.2rem, 1.6vw , 1.6rem);
+          font-weight: 400;
+          line-height: 100%;
+      }
+  }
+
+  @media (min-width: 768px) {
+    max-width: 112rem;
+    margin: 13rem auto 0 auto;
+    height: 17rem;
+
+    justify-content: end;
+    
+    > img {
+      scale: 0.75;
+      width: 65.6rem;
+      height: 41.2rem;
+      bottom: -100px;
+      left: -165px;
+    }
+
+    > .text-container::after {
+      content: '';
+      position: absolute;
+      
+      width: 250px;
+      height: 2px;
+      background-color: ${({ theme }) => theme.COLORS.Dark_400};
+      top: -92px;
+      left: 0;
+    }
+
+    > .text-container::before {
+      content: '';
+      position: absolute;
+      
+      width: 380px;
+      height: 70px;
+      background-color: ${({ theme }) => theme.COLORS.Dark_400};
+      bottom: -70px;
+      left: 2px;
+    }
+    
+    > .text-container {
+      margin: 0 10rem 0 37rem ;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    width: 112rem;
+    margin: 13rem auto 0 auto;
+    height: 23rem;
+    
+    > img {
+      scale: 1;
+      width: 65.6rem;
+      height: 41.2rem;
+      bottom: -65px;
+      left: -110px;
+    }
+
+    > .text-container::after {
+      display: none;
+    }
+
+    > .text-container {
+      margin-left: 0;
+    }
   }
     
 `
@@ -65,7 +133,7 @@ export const Content = styled.div`
   justify-content: center;
   gap: 4.8rem;
 
-  background-color: ${({ theme }) => theme.COLORS.Dark_100};
+  background-color: ${({ theme }) => theme.COLORS.Dark_400};
 
   .cards-container {
 

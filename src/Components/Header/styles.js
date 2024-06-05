@@ -8,13 +8,35 @@ export const Container = styled.header`
   padding: 5.6rem 2.4rem 2.8rem 2.4rem;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 3.2rem;
 
   background: ${({ theme }) => theme.COLORS.Dark_700};
 
-  > div:nth-child(2) {
-    scale: 0.75;
+  .search-container {
+    width: 100%;
+  }
+
+  .search-container, .desktop-button-container, .logout-icon {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+
+    .burger-menu, .search-container, .mobile-button-container{
+      display: none;
+    }
+
+    .search-container, .desktop-button-container, .logout-icon {
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .search-container {
+      width: 58rem;
+    }
   }
 `;
 

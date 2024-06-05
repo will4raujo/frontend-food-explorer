@@ -1,8 +1,8 @@
-import { Container, Header, Nav, Search } from './styles'
+import { Container, Header, Nav } from './styles'
+import { InputSearch } from '../InputSearch'
 import { Footer } from '../Footer'
 import closeIcon from '../../assets/icons/close.svg'
 
-import { FiSearch } from 'react-icons/fi'
 
 export function Menu() {
   return (
@@ -13,10 +13,7 @@ export function Menu() {
           Menu
         </div>
       </Header>
-      <Search>
-        <FiSearch />
-        <input type="text" placeholder="Pesquisar pratos" />
-      </Search>
+      <InputSearch />
       <Nav>
         <ul>
           <li>Novo prato</li>

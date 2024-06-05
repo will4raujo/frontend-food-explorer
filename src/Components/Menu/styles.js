@@ -30,35 +30,6 @@ export const Header = styled.header`
   background-color: ${({ theme }) => theme.COLORS.Dark_700};
 `
 
-export const Search = styled.div`
-  grid-area: search;
-  height: 4.8rem;
-
-  margin: 3.6rem 2.8rem;
-  padding: 1.6rem 1.4rem;
-
-  
-  display: flex;
-  align-items: center;
-  gap: 1.4rem;
-
-  background-color: ${({ theme }) => theme.COLORS.Dark_900};
-  border-radius: 8px;
-  border: none;
-  font-size: 1.6rem;
-  
-  > input {
-    width: 100%;
-    background: transparent;
-    
-    font-size: 1.6rem;
-    color: ${({ theme }) => theme.COLORS.Light_100};
-    
-    border: none;
-    outline: none;
-  }
-`
-
 export const Nav = styled.nav`
   grid-area: nav;
   margin: 3.6rem 2.8rem;

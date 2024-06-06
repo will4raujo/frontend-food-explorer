@@ -126,16 +126,17 @@ export const Banner = styled.div`
 
 export const Content = styled.div`
   grid-area: content;
-
+  margin: 9.5rem 0 0 2.4rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4.8rem;
 
-  background-color: ${({ theme }) => theme.COLORS.Dark_400};
+  background-color: yellow;
 
   .cards-container {
 
+  }
+
+  @media (min-width: 768px) {
+    margin: 27rem auto 0 auto;
   }
 ` 

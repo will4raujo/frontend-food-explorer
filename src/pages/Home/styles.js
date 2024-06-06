@@ -130,7 +130,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 
-  background-color: yellow;
+  background-color: ${({ theme }) => theme.COLORS.Dark_400};
 
   .cards-container {
 
@@ -138,5 +138,6 @@ export const Content = styled.div`
 
   @media (min-width: 768px) {
     margin: 27rem auto 0 auto;
+        
   }
 ` 

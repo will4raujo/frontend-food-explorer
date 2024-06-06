@@ -10,13 +10,14 @@ export function Card( { image, title, description, price }) {
   return (
     <Container>
       <FiHeart />  
-      <PiPencilSimpleLight />
+      {/* <PiPencilSimpleLight /> */}
       <img src={image} alt="Card" />
       
-      <h2>{title + " >"}</h2>
+      <h3>{title + " >"}</h3>
       <p>{description}</p>
       <span className="price">{price}</span>
-
+      
+      <div className="buttons-container">
       <div className="control-container">
         <button>
           <FiMinus />
@@ -28,6 +29,7 @@ export function Card( { image, title, description, price }) {
       </div>
 
       <Button>Incluir</Button>
+      </div>
     </Container>
   );
 }

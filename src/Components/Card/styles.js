@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+
+  margin-right: 1.6rem;
   
   display: flex;
   align-items: center;
@@ -33,7 +35,7 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.Light_300};
   }
 
-  > h2 {
+  > h3 {
     font-size: 1.4rem;
     font-weight: 500;
     font-family: ${({ theme }) => theme.FONTS.Poppins};
@@ -58,6 +60,15 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.Light_300};
   }
 
+  >.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1.2rem;
+  }
+
   .control-container {
     display: flex;
     align-items: center;
@@ -74,15 +85,57 @@ export const Container = styled.div`
         font-size: 1.8rem;
       }
     }
+
+    > span {
+      font-size: 1.6rem;
+    }
   }
 
   @media (min-width: 768px) {
+
+    height: 46.2rem;
+    width: 30.4rem;
+
+    > img {
+      width: 17.6rem;
+      height: 17.6rem;
+    }
+
+    > h3 {
+      font-size: 2.4rem;
+      line-height: 140%;
+    }
+
     p {
       display: block;
       font-size: 1.4rem;
       font-weight: 400;
       line-height: 160%;
       color: ${({ theme }) => theme.COLORS.Light_400};
+    }
+
+    .price {
+      font-size: 3.2rem;
+    }
+
+    .buttons-container {
+      flex-direction: row;
+      
+      .control-container {
+        width: 100%;
+        gap: 1.4rem;
+        
+        > button {
+
+          > svg {
+            font-size: 2.4rem;
+          }
+        }
+
+        > span {
+          font-size: 2rem;
+        }
+      }
     }
   }
  ` 

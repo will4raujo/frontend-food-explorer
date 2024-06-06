@@ -26,7 +26,7 @@ export const Banner = styled.div`
 
   border-radius: 3px;
   
-  background-color: ${({ theme }) => theme.COLORS.Dark_1000};
+  background: ${({ theme }) => theme.COLORS.Dark_gradient};
   
   display: flex;
   justify-content: left;
@@ -44,7 +44,7 @@ export const Banner = styled.div`
     margin-left: 15rem;
     
     > h1 {
-      font-size: clamp(1.8rem, 2.5vw , 4rem);
+      font-size: clamp(1.8rem, 3.2vw , 4rem);
       font-weight: 500;
       line-height: 140%;
       font-family: ${({ theme }) => theme.FONTS.Poppins};

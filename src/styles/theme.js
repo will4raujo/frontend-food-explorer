@@ -9,7 +9,8 @@ export default {
         Light_400: "hsla(240, 7%, 78%, 1)",
         Light_500: "hsla(240, 6%, 51%, 1)",
         Cake_100: "hsla(195, 91%, 25%, 1)",
-        Tomato_100: "hsla(353, 95%, 24%, 1)"
+        Tomato_100: "hsla(353, 95%, 24%, 1)",
+        Dark_gradient: "linear-gradient(90deg, #091E26 0%, #00131C 100%)",
     },
     FONTS: {
         Roboto: "'Roboto', sans-serif",

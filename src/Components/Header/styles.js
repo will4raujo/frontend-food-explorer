@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  width: 100%;
+  width: 100vw;
   height: 115px;
   grid-area: header;
 
-  padding: 5.6rem 2.4rem 2.8rem 2.4rem;
+  padding: 5.6rem 2.8rem 2.8rem 2.4rem;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 3.2rem;
 
@@ -23,6 +23,7 @@ export const Container = styled.header`
   }
 
   @media (min-width: 768px) {
+    justify-content: center;
 
     .burger-menu, .search-container, .mobile-button-container{
       display: none;

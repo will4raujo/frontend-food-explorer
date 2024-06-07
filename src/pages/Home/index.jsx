@@ -1,6 +1,7 @@
 import { Header } from "../../Components/Header";
 import { Banner, Container, Content } from "./styles";
 import { Footer } from "../../Components/Footer";
+import { Slider } from "../../Components/Slider";
 import imageBanner from '../../assets/images/bannerHome.svg'
 
 export function Home() {
@@ -15,7 +16,9 @@ export function Home() {
                 </div>
             </Banner>
             <Content>
-
+                <Slider />
+                <Slider />
+                <Slider />
             </Content>
             <Footer />
         </Container>

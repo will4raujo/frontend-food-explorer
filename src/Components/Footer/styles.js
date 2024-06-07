@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   grid-area: footer;
+  width: 100vw;
 
   display: flex;
   justify-content: center;

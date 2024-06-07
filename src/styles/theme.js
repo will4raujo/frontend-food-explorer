@@ -15,7 +15,9 @@ export default {
         Cake_200: "hsla(186, 100%, 75%, 1)",
         Tomato_100: "hsla(353, 95%, 24%, 1)",
         Dark_gradient: "linear-gradient(90deg, #091E26 0%, #00131C 100%)",
-        
+        Gradient_100: "linear-gradient(270deg, hsla(200, 100%, 3%, 0) 27.5%, hsla(200, 100%, 3%, 100%)  100%)",
+        Gradient_100_reverse: "linear-gradient(90deg, hsla(200, 100%, 3%, 0) 27.5%, hsla(200, 100%, 3%, 100%)  100%)",
+        Gradient_200: "linear-gradient(90deg, hsla(198, 61%, 9%, 100%) 0%, hsla(200, 100%, 5%, 100%)  100%)",
     },
     FONTS: {
         Roboto: "'Roboto', sans-serif",

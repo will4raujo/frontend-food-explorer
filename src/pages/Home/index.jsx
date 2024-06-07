@@ -17,6 +17,8 @@ export function Home() {
             </Banner>
             <Content>
                 <Slider />
+                <Slider />
+                <Slider />
             </Content>
             <Footer />
         </Container>

@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const Banner = styled.div`
   grid-area: banner;
   
-  width: calc( 100% - 5.4rem ); 
+  width: calc( 100vw - 5.4rem ); 
   height: 12rem;
 
   margin-top: 4.4rem;
@@ -26,7 +26,7 @@ export const Banner = styled.div`
 
   border-radius: 3px;
   
-  background: ${({ theme }) => theme.COLORS.Dark_gradient};
+  background: ${({ theme }) => theme.COLORS.Gradient_200};
   
   display: flex;
   justify-content: left;
@@ -42,19 +42,21 @@ export const Banner = styled.div`
 
   > .text-container {
     margin-left: 15rem;
+    color: ${({ theme }) => theme.COLORS.Light_300};
+    font-family: ${({ theme }) => theme.FONTS.Poppins};
     
     > h1 {
       font-size: clamp(1.8rem, 3.2vw , 4rem);
       font-weight: 500;
       line-height: 140%;
-      font-family: ${({ theme }) => theme.FONTS.Poppins};
+      margin-bottom: .3rem;
         
       }
       
       > p {
         font-size: clamp(1.2rem, 1.6vw , 1.6rem);
-          font-weight: 400;
-          line-height: 100%;
+        font-weight: 400;
+        line-height: 140%;
       }
   }
 
@@ -126,7 +128,10 @@ export const Banner = styled.div`
 
 export const Content = styled.div`
   grid-area: content;
-  margin: 9.5rem 0 0 2.4rem;
+  width: 100vw;
+  margin: 9.5rem 0 0 0;
+
+  padding-left: 2.4rem;
   display: flex;
   flex-direction: column;
 
@@ -138,6 +143,5 @@ export const Content = styled.div`
 
   @media (min-width: 768px) {
     margin: 27rem auto 0 auto;
-        
   }
 ` 

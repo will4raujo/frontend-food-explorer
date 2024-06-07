@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.button`
-    width: 100%;
+    width: auto;
     height: 4.8rem;
 
     padding: 0 1.2rem;

@@ -1,11 +1,9 @@
 import { Container } from "./styles";
-import { Button } from '../Button';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 
 export function ButtonControl() {
   return (
     <Container>
-      <div className='buttons-container'>
         <div className='control-container'>
           <button>
             <FiMinus />
@@ -15,9 +13,6 @@ export function ButtonControl() {
             <FiPlus />
           </button>
         </div>
-
-        <Button>Incluir</Button>
-      </div>
     </Container>
   );
 }

@@ -1,15 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
-> .buttons-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 1.2rem;
-  }
+  width: 10rem;
 
   .control-container {
     display: flex;
@@ -34,23 +26,17 @@ export const Container = styled.div`
   }
 
   @media (min-width: 768px) {
-    .buttons-container {
-      flex-direction: row;
-      
-      .control-container {
-        width: 100%;
-        gap: 1.4rem;
-        
-        > button {
+    .control-container {
+      gap: 1.4rem;
 
-          > svg {
-            font-size: 2.4rem;
-          }
+      > button {
+        > svg {
+          font-size: 2.4rem;
         }
+      }
 
-        > span {
-          font-size: 2rem;
-        }
+      > span {
+        font-size: 2rem;
       }
     }
   }

@@ -1,34 +1,21 @@
-import { Container } from "./styles";
-import { Button } from "../Button";
-import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
-import { PiPencilSimpleLight } from "react-icons/pi";
+import { Container } from './styles';
+import { ButtonControl } from '../ButtonControl';
+import { FiHeart } from 'react-icons/fi';
+// import { PiPencilSimpleLight } from 'react-icons/pi';
 
-export function Card( { image, title, description, price }) {
-  let quantity = 0;           
+export function Card({ image, title, description, price }) {
 
   return (
     <Container>
-      <FiHeart />  
+      <FiHeart />
       {/* <PiPencilSimpleLight /> */}
-      <img src={image} alt="Card" />
-      
-      <h3>{title + " >"}</h3>
-      <p>{description}</p>
-      <span className="price">{price}</span>
-      
-      <div className="buttons-container">
-      <div className="control-container">
-        <button>
-          <FiMinus />
-        </button>
-        <span>{quantity}</span>
-        <button>
-          <FiPlus />
-        </button>
-      </div>
+      <img src={image} alt='Card' />
 
-      <Button>Incluir</Button>
-      </div>
+      <h3>{title + ' >'}</h3>
+      <p>{description}</p>
+      <span className='price'>{price}</span>
+
+      <ButtonControl />
     </Container>
   );
 }

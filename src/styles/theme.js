@@ -11,6 +11,7 @@ export default {
         Light_300: "#E1E1E6",
         Light_400: "hsla(240, 7%, 78%, 1)",
         Light_500: "hsla(240, 6%, 51%, 1)",
+        Light_600: "hsla(204, 2%, 47%, 1)",
         Cake_100: "hsla(195, 91%, 25%, 1)",
         Cake_200: "hsla(186, 100%, 75%, 1)",
         Tomato_100: "hsla(353, 95%, 24%, 1)",

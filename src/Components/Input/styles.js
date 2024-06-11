@@ -19,5 +19,10 @@ export const Container = styled.div`
     border: none;
 
     background-color: ${({ theme }) => theme.COLORS.Dark_900};
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px ${({ theme }) => theme.COLORS.Light_400};
+    }
   }
 `;

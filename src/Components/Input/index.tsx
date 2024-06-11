@@ -1,6 +1,6 @@
 import { Container } from './styles'
 
-export function Input({ text, placeholder ,...rest}) {
+export function Input({ text, placeholder, ...rest}) {
   return (
     <Container>
       <label htmlFor={text}>{text}</label>

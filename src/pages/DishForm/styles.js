@@ -14,9 +14,10 @@ export const Container = styled.div`
   
   > main {
     grid-area: main;
+    overflow-y: auto;
     
     margin-top: 1rem;
-    padding: 0 3.2rem;
+    padding: 0 3.2rem 5rem 3.2rem;
     
     display: flex;
     flex-direction: column;
@@ -32,7 +33,21 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       gap: 2.4rem;
+      
+      > .col-3, .col-2 {
+        display: grid;
+        gap: 2.4rem;  
+      }
     }
+
+    > .action-buttons {
+      display: flex;
+      gap: 3.2rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    
   }
 `
 
@@ -70,4 +85,38 @@ export const FileInput = styled.div`
       display: none;
     }
   }
+`
+export const SubmitButton = styled.button`
+  height: 4.8rem;
+  width: 100%;
+  padding: 1.2rem 2.4rem;
+
+  border: none;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.COLORS.Tomato_400};
+
+  font-size: 1.4rem;
+  font-weight: 500;
+  font-family: ${({ theme }) => theme.FONTS.Poppins};
+  color: ${({ theme }) => theme.COLORS.Light_100};
+
+  cursor: pointer;
+
+`
+export const GhostButton = styled.button`
+  height: 4.8rem;
+  width: 100%;
+  padding: 1.2rem auto;
+
+  border: none;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.COLORS.Dark_800};
+
+  font-size: 1.4rem;
+  font-weight: 500;
+  font-family: ${({ theme }) => theme.FONTS.Poppins};
+  color: ${({ theme }) => theme.COLORS.Light_100};
+
+  cursor: pointer;
+
 `

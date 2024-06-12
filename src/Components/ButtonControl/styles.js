@@ -13,7 +13,8 @@ export const Container = styled.div`
     > button {
       background: transparent;
       border: none;
-
+      cursor: pointer;
+      transition: background-color 0.3s;
       > svg {
         color: ${({ theme }) => theme.COLORS.Light_100};
         font-size: 1.8rem;

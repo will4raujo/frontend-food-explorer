@@ -5,19 +5,22 @@ import { ButtonText } from "../../Components/ButtonText";
 import { PiCaretLeftLight } from "react-icons/pi";
 import { ButtonControl } from "../../Components/ButtonControl";
 import { Button } from "../../Components/Button";
-import orderIcon from "../../assets/orderIcon.svg";
+import { useParams } from "react-router-dom";
 
 export function Dish() {
+  const { id } = useParams();
+
+  const productImage = `/src/assets/product_images/product-${id}.png`;
+
   return (
     <Container>
       <Header />
       <main>
         <div className="col-1">
-          <ButtonText icon={PiCaretLeftLight} to="/">voltar</ButtonText>
-          <img
-            src="src/assets/product_images/product-2.png"
-            alt="Nome do prato"
-          />
+          <ButtonText icon={PiCaretLeftLight} to="/">
+            voltar
+          </ButtonText>
+          <img src={productImage} alt="Nome do prato" />
         </div>
         <div className="col-2">
           <h1>Nome do prato</h1>
@@ -33,8 +36,7 @@ export function Dish() {
           <div className="buttons-container">
             <ButtonControl />
             <Button>
-              <img src={orderIcon} alt="Notification" />
-              Pedir . R$ 25,00
+              {`incluir ∙ R$ 25,00`}
             </Button>
           </div>
         </div>

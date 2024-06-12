@@ -8,7 +8,23 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    gap: 7.4rem;
+    gap: 3.2rem;
+
+    > div:first-child {
+        margin-bottom: 4.1rem;
+        width: auto;
+
+        > .logo-name-container {
+            > img {
+                width: 4.3rem;
+                height: 4.3rem;
+            } 
+            > .logo-name {
+                font-size: 3.7rem;
+            }
+
+        }
+    }
 
     @media (min-width: 768px) {
         flex-direction: row;
@@ -26,6 +42,10 @@ export const Form = styled.form`
 
     .form-title {
         display: none;
+    }
+
+    > a:last-child {
+        align-self: center;
     }
 
     @media (min-width: 768px) {

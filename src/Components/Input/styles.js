@@ -18,6 +18,9 @@ export const Container = styled.div`
     border-radius: 8px;
     border: none;
 
+    color: ${({ theme }) => theme.COLORS.Light_500};
+    font-size: 1.6rem;
+    
     background-color: ${({ theme }) => theme.COLORS.Dark_900};
     
     &:focus {

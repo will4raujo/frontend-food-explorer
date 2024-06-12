@@ -88,9 +88,9 @@ export const Container = styled.div`
         }
       }
 
-      .buttons-container {
+      > .buttons-container {
         margin-top: 2.4rem;
-        width: 100%;
+        width: auto;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -110,6 +110,15 @@ export const Container = styled.div`
         > img {
           width: 39rem;
           height: 39rem;
+        }
+      }
+      .col-2 {
+        width: 70rem;
+        align-items: start;
+
+        .tags {
+          width: auto;
+          padding: 0;
         }
       }
     }

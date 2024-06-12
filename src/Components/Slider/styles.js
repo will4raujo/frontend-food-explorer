@@ -58,7 +58,7 @@ export const Container = styled.div`
     }
 
     > div:hover::before {
-      width: 10rem;
+      width: 5rem;
     }
 
     > div::after {
@@ -76,7 +76,7 @@ export const Container = styled.div`
     }
 
     > div:hover::after {
-      width: 10rem;
+      width: 5rem;
     }
   }
 

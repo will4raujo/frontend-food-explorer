@@ -5,6 +5,7 @@ import { Logo } from "../../Components/Logo";
 import { ButtonText } from "../../Components/ButtonText";
 
 export function SignUp() {
+
     return (
         <Container>
                 <Logo/>
@@ -15,7 +16,7 @@ export function SignUp() {
                     <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres'/>
                     <Button title={"Criar conta"}></Button>
 
-                    <ButtonText >Já tenho uma conta</ButtonText>
+                    <ButtonText to="/" >Já tenho uma conta</ButtonText>
                 </Form>
         </Container>
     )

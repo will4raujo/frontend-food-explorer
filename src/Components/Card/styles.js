@@ -19,6 +19,8 @@ export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.COLORS.Dark_300};
   background-color: ${({ theme }) => theme.COLORS.Dark_200};
 
+  cursor: pointer;
+
   > img {
     width: 8.8rem;
     height: 8.8rem;

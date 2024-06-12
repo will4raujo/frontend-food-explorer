@@ -5,7 +5,10 @@ import orderIcon from "../../assets/orderIcon.svg";
 import { Button } from "../Button";
 import { FiLogOut } from "react-icons/fi";
 
+import { useNavigate } from "react-router-dom";
+
 export function Header() {
+    const navigate = useNavigate();
     const orders = 0;
 
     return (
@@ -13,14 +16,14 @@ export function Header() {
             <BurgerMenu className="burger-menu">
                 <span/><span/><span/>
             </BurgerMenu>
-            <div className='logo-container'>
+            <div className='logo-container' onClick={ () => navigate('/')}>
                 <Logo isAdmin/>
             </div>
             <div className="search-container">
                 <InputSearch/>
             </div>
             <div className="desktop-button-container">
-                <Button title={`Pedidos (${orders})`}>
+                <Button title={`Pedidos (${orders})`} onClick={() => navigate('/dish')}>
                     <img src={orderIcon} alt="Notification"/>
                 </Button>
             </div>

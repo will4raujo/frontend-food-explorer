@@ -14,7 +14,7 @@ export function DishForm() {
     <Container>
       <Header />
       <main>
-        <ButtonText icon={PiCaretLeftLight}>voltar</ButtonText>
+        <ButtonText icon={PiCaretLeftLight} to='/'>voltar</ButtonText>
         <h1>Novo prato</h1>
         <form>
           <div className="col-3">

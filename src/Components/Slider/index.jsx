@@ -3,6 +3,7 @@ import "@splidejs/react-splide/css/skyblue";
 import { Card } from "../Card";
 import { Container } from "./styles";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Slider( products, sliderTitle ) {
   
@@ -82,6 +83,8 @@ export function Slider( products, sliderTitle ) {
     }
   ];
 
+  const navigate = useNavigate()
+
   const optionsMobile = {
     rewind: true,
     gap: 0,
@@ -130,6 +133,7 @@ export function Slider( products, sliderTitle ) {
           {products.map((product, index) => (
             <SplideSlide key={`product_${index}`}>
               <Card
+                onClick={() => navigate(`/dish/${index}`)}
                 image={product.image}
                 title={product.title}
                 description={product.description}

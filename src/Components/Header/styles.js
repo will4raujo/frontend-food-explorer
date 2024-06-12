@@ -14,6 +14,10 @@ export const Container = styled.header`
 
   background: ${({ theme }) => theme.COLORS.Dark_700};
 
+  .logo-container {
+    cursor: pointer;
+  }
+
   .search-container {
     width: 100%;
   }

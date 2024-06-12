@@ -37,8 +37,7 @@ export function DishForm() {
             <Input
               type="text"
               name="price"
-              tex
-              t={"Preço"}
+              text={"Preço"}
               placeholder={"R$ 00,00"}
             />
           </div>

@@ -4,7 +4,7 @@ import arrowIcon from "../../assets/icons/arrow.svg";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: .8rem;
 
   label {
     font-size: 1.6rem;

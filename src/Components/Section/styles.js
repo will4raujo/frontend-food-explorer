@@ -2,10 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   min-height: 4.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: .8rem;
 `
 
 export const H2 = styled.h2`
-  margin-bottom: 1.6rem;
   font-size: 1.6rem;
   line-height: 100%;
   font-weight: 400;

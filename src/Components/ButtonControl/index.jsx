@@ -1,15 +1,35 @@
 import { Container } from "./styles";
 import { FiMinus, FiPlus } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
 
 export function ButtonControl() {
+  const [quantity, setQuantity] = useState(1);
+  const [displayQuantity, setDisplayQuantity] = useState(`0${quantity}`);
+  
+  const handleMinus = () => {
+    setQuantity(prev => Math.max(prev - 1, 1));
+  };
+
+  const handlePlus = () => {
+    setQuantity(prev => prev + 1);
+  };
+
+  useEffect(() => {
+    if (quantity < 10) {
+      setDisplayQuantity(`0${quantity}`);
+    } else {
+      setDisplayQuantity(quantity.toString());
+    }
+  }, [quantity]);
+
   return (
     <Container>
         <div className='control-container'>
-          <button>
+          <button onClick={handleMinus}>
             <FiMinus />
           </button>
-          <span>01</span>
-          <button>
+          <span>{displayQuantity}</span>
+          <button onClick={handlePlus}>
             <FiPlus />
           </button>
         </div>

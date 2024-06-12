@@ -21,10 +21,6 @@ export const Container = styled.div`
       }
     }
 
-    > button:hover {
-      background-color: red};
-    }
-
     > span {
       font-size: 1.6rem;
     }

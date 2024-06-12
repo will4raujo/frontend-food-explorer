@@ -5,7 +5,7 @@ export function Logo() {
   return (
     <Container>
       <img src={logo} alt="logo" />
-      <h1>food explorer</h1>
+      <span>food explorer</span>
     </Container>
   );
 }

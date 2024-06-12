@@ -11,7 +11,7 @@ export const Container = styled.div`
     margin-right: 1rem;
   }
 
-  h1 {
+  span {
     font-size: 2.4rem;
     line-height: 2.8rem;
     font-weight: bold;

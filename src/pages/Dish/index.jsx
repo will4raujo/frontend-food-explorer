@@ -6,8 +6,14 @@ import { PiCaretLeftLight } from "react-icons/pi";
 import { ButtonControl } from "../../Components/ButtonControl";
 import { Button } from "../../Components/Button";
 import orderIcon from "../../assets/orderIcon.svg";
+import { useParams } from "react-router-dom";
 
 export function Dish() {
+  const { id } = useParams();
+
+  const productImage = `/src/assets/product_images/product-${id}.png`;
+  
+  
   return (
     <Container>
       <Header />
@@ -15,7 +21,7 @@ export function Dish() {
         <div className="col-1">
           <ButtonText icon={PiCaretLeftLight} to="/">voltar</ButtonText>
           <img
-            src="src/assets/product_images/product-2.png"
+            src={productImage}
             alt="Nome do prato"
           />
         </div>

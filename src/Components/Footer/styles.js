@@ -16,15 +16,15 @@ export const Container = styled.div`
 
   background-color: ${({ theme }) => theme.COLORS.Dark_600};
 
-  > div:nth-child(1) {
+  > div .logo-name-container {
     filter: grayscale(100%);
-
-    > div img {
+    
+    > img {
       width: 1.8rem;
       height: 1.8rem;
     }
-
-    > div span {
+      
+    > .logo-name {
       font-size: 1.2rem;
       font-weight: 400;
     }

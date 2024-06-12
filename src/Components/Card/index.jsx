@@ -18,7 +18,7 @@ export function Card({ image, title, description, price, onClick, favorite = fal
 
 
   return (
-    <Container favorite={isFavorite}>
+    <Container favorite={isFavorite.toString()}>
       <button className='fav-button' onClick={handleFavorite}>
         <FiHeart />
       </button>

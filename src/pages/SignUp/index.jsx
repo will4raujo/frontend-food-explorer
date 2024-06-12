@@ -15,7 +15,6 @@ export function SignUp() {
                     <Input text={'Email'} type={'email'} placeholder='Exemplo: exemplo@exemplo.com.br'/>
                     <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres'/>
                     <Button title={"Criar conta"}></Button>
-
                     <ButtonText to="/" >Já tenho uma conta</ButtonText>
                 </Form>
         </Container>

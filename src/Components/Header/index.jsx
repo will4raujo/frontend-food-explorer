@@ -27,7 +27,7 @@ export function Header() {
             <div className="mobile-button-container">
                 <img src={orderIcon} alt="Notification"/>
             </div>
-            <FiLogOut className="logout-icon" size={32}/>
+            <FiLogOut className="logout-icon" />
         </Container>
     )
 }

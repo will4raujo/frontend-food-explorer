@@ -24,13 +24,13 @@ export const Container = styled.div`
         z-index: 3;
 
         > svg {
-        fill: ${({ theme }) => theme.COLORS.Light_300};
+        fill: ${({ theme }) => theme.COLORS.Light_100};
         }
       }
 
       > button:hover {
         > svg {
-          fill: ${({ theme }) => theme.COLORS.Light_100};
+          fill: ${({ theme }) => theme.COLORS.Light_300};
         } 
       }
   }
@@ -52,7 +52,13 @@ export const Container = styled.div`
       bottom: 0;
       left: 0;
 
-    z-index: 2;
+      z-index: 2;
+      transition: width 1s ease;
+
+    }
+
+    > div:hover::before {
+      width: 10rem;
     }
 
     > div::after {
@@ -66,6 +72,11 @@ export const Container = styled.div`
       right: 0;
 
       z-index: 2;
+      transition: width 1s ease;
+    }
+
+    > div:hover::after {
+      width: 10rem;
     }
   }
 
@@ -75,4 +86,4 @@ export const Container = styled.div`
      font-size: 3.2rem;
     }
   }
-`
+`;

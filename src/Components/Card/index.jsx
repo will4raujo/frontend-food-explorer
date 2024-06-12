@@ -3,10 +3,10 @@ import { ButtonControl } from '../ButtonControl';
 import { FiHeart } from 'react-icons/fi';
 // import { PiPencilSimpleLight } from 'react-icons/pi';
 
-export function Card({ image, title, description, price }) {
+export function Card({ image, title, description, price, onClick }) {
 
   return (
-    <Container>
+    <Container onClick={onClick}>
       <FiHeart />
       {/* <PiPencilSimpleLight /> */}
       <img src={image} alt='Card' />

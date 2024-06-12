@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const Container = styled.button`
+export const Container = styled(Link)`
   display: flex;
   align-items: center;
 
@@ -14,6 +15,7 @@ export const Container = styled.button`
   
 
   cursor: pointer;
+  text-decoration: none;
 
   > svg {
     width: 2.2rem;

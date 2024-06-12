@@ -13,7 +13,7 @@ export function Dish() {
       <Header />
       <main>
         <div className="col-1">
-          <ButtonText icon={PiCaretLeftLight}>voltar</ButtonText>
+          <ButtonText icon={PiCaretLeftLight} to="/">voltar</ButtonText>
           <img
             src="src/assets/product_images/product-2.png"
             alt="Nome do prato"

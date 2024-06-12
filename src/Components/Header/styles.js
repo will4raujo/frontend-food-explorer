@@ -32,6 +32,14 @@ export const Container = styled.header`
     .search-container, .desktop-button-container, .logout-icon {
       display: block;
     }
+
+    .desktop-button-container button {
+      min-width: 21.5rem;
+    }
+    > svg {
+      min-width: 3.2rem;
+      min-height: 3.2rem;
+    }
   }
 
   @media screen and (min-width: 1024px) {

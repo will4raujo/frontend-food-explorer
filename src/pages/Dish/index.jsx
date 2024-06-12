@@ -1,7 +1,8 @@
 import { Container } from "./styles";
 import { Header } from "../../Components/Header";
 import { Footer } from "../../Components/Footer";
-import { FiArrowLeft } from "react-icons/fi";
+import { ButtonText } from "../../Components/ButtonText";
+import { PiCaretLeftLight } from "react-icons/pi";
 import { ButtonControl } from "../../Components/ButtonControl";
 import { Button } from "../../Components/Button";
 import orderIcon from "../../assets/orderIcon.svg";
@@ -12,10 +13,7 @@ export function Dish() {
       <Header />
       <main>
         <div className="col-1">
-          <a>
-            <FiArrowLeft />
-            voltar
-          </a>
+          <ButtonText icon={PiCaretLeftLight}>voltar</ButtonText>
           <img
             src="src/assets/product_images/product-2.png"
             alt="Nome do prato"

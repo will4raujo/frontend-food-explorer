@@ -8,10 +8,11 @@ export const Container = styled.div`
   
   font-size: 1.6rem;
   color: ${({ theme }) => theme.COLORS.Light_400};
+  
 
-  > input {
+  > textarea {
     width: 100%;
-    height: 4.8rem;
+    min-height: 10rem;
 
     padding: 1.6rem 1.4rem;
     
@@ -19,10 +20,19 @@ export const Container = styled.div`
     border: none;
 
     background-color: ${({ theme }) => theme.COLORS.Dark_900};
+    color: ${({ theme }) => theme.COLORS.Light_500};
+    font-family: ${({ theme }) => theme.FONTS.Roboto};
+    font-size: 1.6rem;
+
+    resize: none;
     
     &:focus {
       outline: none;
       box-shadow: 0 0 0 1px ${({ theme }) => theme.COLORS.Light_400};
     }
+
+    &::placeholder {
+        color: ${({ theme }) => theme.COLORS.Light_500};
+    }
   }
-`;
+`

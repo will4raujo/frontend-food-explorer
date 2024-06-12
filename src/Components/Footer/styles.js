@@ -24,7 +24,7 @@ export const Container = styled.div`
       height: 1.8rem;
     }
 
-    > h1 {
+    > span {
       font-size: 1.2rem;
       font-weight: 400;
     }

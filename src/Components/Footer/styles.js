@@ -19,12 +19,12 @@ export const Container = styled.div`
   > div:nth-child(1) {
     filter: grayscale(100%);
 
-    img {
+    > div img {
       width: 1.8rem;
       height: 1.8rem;
     }
 
-    > span {
+    > div span {
       font-size: 1.2rem;
       font-weight: 400;
     }

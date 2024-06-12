@@ -14,7 +14,7 @@ export function Header() {
                 <span/><span/><span/>
             </BurgerMenu>
             <div className='logo-container'>
-                <Logo/>
+                <Logo isAdmin/>
             </div>
             <div className="search-container">
                 <InputSearch/>

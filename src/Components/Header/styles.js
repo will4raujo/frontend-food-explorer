@@ -58,7 +58,7 @@ export const BurgerMenu = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  width: 2.4rem;
+  min-width: 2.4rem;
   height: 1.8rem;
   cursor: pointer;
 
@@ -68,5 +68,30 @@ export const BurgerMenu = styled.div`
     background: ${({ theme }) => theme.COLORS.Light_100};
     
     border-radius: 0.3rem;
+  }
+
+  &:hover > span:nth-child(1) {
+    animation: hiddeFromLeft 1s .2s ease-in-out;
+  }
+
+  &:hover > span:nth-child(2) {
+    transform: rotate(180deg);
+    animation: hiddeFromLeft 1s .5s ease-in-out;
+  }
+
+  &:hover > span:nth-child(3) {
+    animation: hiddeFromLeft 1s .8s ease-in-out;
+  }
+
+  @keyframes hiddeFromLeft {
+    0% {
+      width: 100%;
+    }
+    50% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
   }
 `;

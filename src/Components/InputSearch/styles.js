@@ -14,6 +14,10 @@ export const Container = styled.div`
   border-radius: 8px;
   border: none;
   font-size: 1.6rem;
+
+  > svg {
+    color: ${({ theme }) => theme.COLORS.Light_400};
+  }
   
   > input {
     width: 100%;
@@ -24,5 +28,9 @@ export const Container = styled.div`
     
     border: none;
     outline: none;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.COLORS.Light_500};
+    }
   }
 `

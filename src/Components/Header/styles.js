@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.header`
   width: 100vw;
@@ -95,3 +96,25 @@ export const BurgerMenu = styled.div`
     }
   }
 `;
+
+export const LogOut = styled(Link)`
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    border: none;
+    background: none;
+
+    > svg { 
+        color: ${({ theme }) => theme.COLORS.Light_100};
+        font-size: 3.2rem;
+    }
+
+    svg:hover {
+        color: ${({ theme }) => theme.COLORS.Light_400};
+        transition: .5s;
+    }
+`

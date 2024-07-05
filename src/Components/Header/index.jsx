@@ -1,22 +1,29 @@
 import { Logo } from "../Logo";
 import { Menu } from "../Menu";
-import { Container, BurgerMenu } from "./styles";
+import { Container, BurgerMenu, LogOut } from "./styles";
 import { InputSearch } from "../InputSearch";
 import orderIcon from "../../assets/orderIcon.svg";
 import { Button } from "../Button";
 import { FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../hooks/auth";
 
 export function Header() {
     const navigate = useNavigate();
     const orders = 0;
-    
+    const { signOut } = useAuth();
+
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const handleMenu = () => {
         setMenuIsOpen(!menuIsOpen);
     }
+
+    const handleLogout = () => {
+        signOut();
+    }
+
 
     return (
         <Container>
@@ -37,7 +44,11 @@ export function Header() {
             <div className="mobile-button-container">
                 <img src={orderIcon} alt="Notification"/>
             </div>
-            <FiLogOut className="logout-icon" />
+
+            <LogOut className="logout-icon" onClick={handleLogout}>
+                <FiLogOut className="logout-icon"/>
+            </LogOut>
+            
             {menuIsOpen && <Menu isOpen={menuIsOpen} onClose={handleMenu} />}
         </Container>
     )

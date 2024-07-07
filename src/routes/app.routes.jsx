@@ -9,7 +9,7 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/dish/:id" element={<Dish />} />
-      <Route path="/dish" element={<DishForm />} />
+      <Route path="/dish/edit/:id" element={<DishForm />} />
     </Routes>
   );
 }

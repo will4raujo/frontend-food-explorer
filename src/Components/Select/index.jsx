@@ -1,13 +1,15 @@
 import { Container } from "./styles";
 
-export function Select() {
+export function Select({name, title, value, setValue, options = []}) {
+
   return (
     <Container>
-      <label htmlFor='category'>Categoria</label>
-      <select  name='category' >
-        <option value='breakfast'>Café da manhã</option>
-        <option value='lunch'>Almoço</option>
-        <option value='dinner'>Jantar</option>
+      <label htmlFor={name}>{title}</label>
+      <select id={name} value={value} onChange={(e) => setValue(e.target.value)}>
+        {!value && <option value="" disabled>Selecione uma opção</option>}
+        {options.map(option => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
       </select>
     </Container>
   )

@@ -44,6 +44,7 @@ export const Container = styled.div`
     > .action-buttons {
       display: flex;
       gap: 3.2rem;
+      justify-content: end;
     }
   }
 
@@ -51,6 +52,7 @@ export const Container = styled.div`
     > main {
       width: 112rem;
       margin: 1rem auto 0 auto;
+      
       > form {
         .col-2 {
           grid-template-columns: 80% 1fr;
@@ -64,6 +66,11 @@ export const Container = styled.div`
       > .action-buttons {
         width: 35rem;
         align-self: end;
+
+        > button {
+          max-width: 17.5rem;
+        }
+      }
     }
   }
 `;

@@ -8,9 +8,9 @@ import { ButtonText } from "../../Components/ButtonText";
 import { Section } from "../../Components/Section";
 import { TextArea } from "../../Components/TextArea";
 import { PiCaretLeftLight, PiUploadSimple } from "react-icons/pi";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import api from "../../services/api";
-import { useNavigate } from "react-router-dom";
 
 export function DishForm() {
   const [name, setName] = useState("");
@@ -26,7 +26,7 @@ export function DishForm() {
       setIngredient("");
     }
   }
-
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const removeIngredient = (index) => {
@@ -35,8 +35,8 @@ export function DishForm() {
   };
 
   const formatCurrency = (value) => {
-    const numberValue = parseFloat(value.replace(/\D/g, '')) / 100
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(numberValue)
+    const parsedPrice = parseFloat(value.replace(/\D/g, '')) / 100
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parsedPrice)
   }
 
   const handlePriceChange = (e) => {
@@ -129,7 +129,7 @@ export function DishForm() {
           />
         </form>
         <div className="action-buttons">
-          <GhostButton>Excluir prato</GhostButton>
+          {id !== 'new' && <GhostButton>Excluir prato</GhostButton>}
           <SubmitButton onClick={handleSubmit}>Salvar alterações</SubmitButton>
         </div>
       </main>

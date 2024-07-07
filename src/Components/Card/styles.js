@@ -44,6 +44,24 @@ export const Container = styled.div`
     }
   }
 
+  > .edit-button {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+    z-index: 2;
+
+    > svg {
+      color: ${({ theme }) => theme.COLORS.Light_300};
+      width: 2.4rem;
+      height: 2.2rem;
+    }
+  }
+
   > .content-wrapper {
     display: flex;
     align-items: center;

@@ -2,8 +2,10 @@ import { Container } from './styles';
 import { ButtonControl } from '../ButtonControl';
 import { Button } from '../Button';
 import { FiHeart } from 'react-icons/fi';
-// import { PiPencilSimpleLight } from 'react-icons/pi';
+import { PiPencilSimpleLight } from 'react-icons/pi';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 
 export function Card({ image, title, description, price, onClick, favorite = false }) {
   const [isFavorite, setIsFavorite] = useState(favorite);
@@ -16,13 +18,22 @@ export function Card({ image, title, description, price, onClick, favorite = fal
     setIsFavorite(favorite);
   }, [favorite]);
 
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
+  const handleEdit = () => {
+    //temporarily hardcoded
+    navigate('/dish/1');
+  }
+  
   return (
     <Container favorite={isFavorite.toString()}>
-      <button className='fav-button' onClick={handleFavorite}>
+      {user.role === 'customer' && <button className='fav-button' onClick={handleFavorite}>
         <FiHeart />
-      </button>
-      {/* <PiPencilSimpleLight /> */}
+      </button>}
+      {user.role === 'admin' && <button className='edit-button' onClick={handleEdit}>
+        <PiPencilSimpleLight />
+      </button>}
       <div className='content-wrapper' onClick={onClick}>
 
         <img src={image} alt='Card' />
@@ -31,10 +42,13 @@ export function Card({ image, title, description, price, onClick, favorite = fal
         <p>{description}</p>
         <span className='price'>{price}</span>
       </div>
-      <div className='action-buttons'>
-        <ButtonControl />
-        <Button>Incluir</Button>
-      </div>
+
+      {user.role === 'customer' && 
+        <div className='action-buttons'>
+          <ButtonControl />
+          <Button>Incluir</Button>
+        </div>
+      }
 
     </Container>
   );

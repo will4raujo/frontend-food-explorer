@@ -5,10 +5,13 @@ import { ButtonText } from "../../Components/ButtonText";
 import { PiCaretLeftLight } from "react-icons/pi";
 import { ButtonControl } from "../../Components/ButtonControl";
 import { Button } from "../../Components/Button";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
 
 export function Dish() {
   const { id } = useParams();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const productImage = `/src/assets/product_images/product-${id}.png`;
 
@@ -33,12 +36,18 @@ export function Dish() {
             <span>rabanete</span>
             <span>tomate</span>
           </div>
-          <div className="buttons-container">
+          {user.role === 'customer' && <div className="buttons-container">
             <ButtonControl />
             <Button>
               {`incluir ∙ R$ 25,00`}
             </Button>
+          </div>}
+          {user.role === 'admin' && <div className="buttons-container">
+            <Button onClick={() => navigate(`/dish`)}>
+              {`editar`}
+            </Button>
           </div>
+          }
         </div>
       </main>
       <Footer />

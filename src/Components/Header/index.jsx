@@ -24,6 +24,7 @@ export function Header() {
         signOut();
     }
 
+    const { user } = useAuth();
 
     return (
         <Container>
@@ -31,18 +32,26 @@ export function Header() {
                 <span/><span/><span/>
             </BurgerMenu>
             <div className='logo-container' onClick={ () => navigate('/')}>
-                <Logo isAdmin/>
+                <Logo isAdmin={user?.role === 'admin'}/>
             </div>
             <div className="search-container">
                 <InputSearch/>
             </div>
             <div className="desktop-button-container">
-                <Button title={`Pedidos (${orders})`} onClick={() => navigate('/dish')}>
-                    <img src={orderIcon} alt="Notification"/>
-                </Button>
+                {user.role === 'customer' &&                
+                    <Button title={`Pedidos (${orders})`}>
+                        <img src={orderIcon} alt="Notification"/>
+                    </Button>
+                }
+                {user.role === 'admin' &&
+                    <Button title="Novo prato" onClick={() => navigate('/dish/edit/new')}/>
+                } 
             </div>
+
             <div className="mobile-button-container">
-                <img src={orderIcon} alt="Notification"/>
+                { user.role === 'customer' &&
+                    <img src={orderIcon} alt="Notification"/>
+                }
             </div>
 
             <LogOut className="logout-icon" onClick={handleLogout}>

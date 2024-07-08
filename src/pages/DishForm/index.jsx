@@ -63,13 +63,29 @@ export function DishForm() {
       if (id === 'new') {
         await api.post("/dishes", data);
         alert("Prato cadastrado com sucesso!");
+        navigate('/');
       } else {
         await api.put(`/dishes/${id}`, data);
         alert("Prato atualizado com sucesso!");
+        navigate('/');
       }
 
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  const handleDelete = async () => {
+    const confirm = window.confirm("Tem certeza que deseja excluir este prato?");
+
+    if (confirm) {
+      try {
+        await api.delete(`/dishes/${id}`);
+        alert("Prato excluído com sucesso!");
+        navigate('/');
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
@@ -127,7 +143,7 @@ export function DishForm() {
                   value={ingredients[index]}
                 />
               ))}
-              <Ingredient placeholder={"Adicionar"} isnew onClick={addIngredient} onChange={(e) => setIngredient(e.target.value)} value={ingredient} />
+              <Ingredient placeholder={"Adicionar"} isNew onClick={addIngredient} onChange={(e) => setIngredient(e.target.value)} value={ingredient} />
             </Section>
             <Input
               type="text"
@@ -148,7 +164,7 @@ export function DishForm() {
           />
         </form>
         <div className="action-buttons">
-          {id !== 'new' && <GhostButton>Excluir prato</GhostButton>}
+          {id !== 'new' && <GhostButton onClick={handleDelete}>Excluir prato</GhostButton>}
           <SubmitButton onClick={handleSubmit}>Salvar alterações</SubmitButton>
         </div>
       </main>

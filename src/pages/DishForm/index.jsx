@@ -60,14 +60,32 @@ export function DishForm() {
       ingredients,
     }
     try {
-      await api.post("/dishes", data);
-      alert("Prato cadastrado com sucesso!");
-      navigate('/');
+      if (id === 'new') {
+        await api.post("/dishes", data);
+        alert("Prato cadastrado com sucesso!");
+      } else {
+        await api.put(`/dishes/${id}`, data);
+        alert("Prato atualizado com sucesso!");
+      }
 
     } catch (error) {
       console.error(error);
     }
   }
+
+  useEffect(() => {
+    if ( id !== 'new') {
+      const fetchDish = async () => {
+        const { data } = await api.get(`/dishes/${id}`);
+        setName(data.name);
+        setCategory(data.category);
+        setIngredients(data.ingredients.map(ingredient => ingredient.name));
+        setPrice(data.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+        setDescription(data.description);
+      }
+      fetchDish();
+    }
+  }, [id]);
 
   return (
     <Container>
@@ -85,7 +103,7 @@ export function DishForm() {
                 <input type="file" id="image" />
               </label>
             </FileInput>
-            <Input type="text" name="name" text={"Nome do prato"} placeholder={"Nome do prato"} onChange={(e) => setName(e.target.value)} />
+            <Input type="text" name="name" text={"Nome do prato"} placeholder={"Nome do prato"} value={name} onChange={(e) => setName(e.target.value)} />
             <Select 
               title="Categoria" 
               name="category" 
@@ -109,7 +127,7 @@ export function DishForm() {
                   value={ingredients[index]}
                 />
               ))}
-              <Ingredient placeholder={"Adicionar"} isNew onClick={addIngredient} onChange={(e) => setIngredient(e.target.value)} value={ingredient} />
+              <Ingredient placeholder={"Adicionar"} isnew onClick={addIngredient} onChange={(e) => setIngredient(e.target.value)} value={ingredient} />
             </Section>
             <Input
               type="text"
@@ -125,6 +143,7 @@ export function DishForm() {
             placeholder={
               "Fale brevemente sobre o prato, seus ingredientes e composição"
             }
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </form>

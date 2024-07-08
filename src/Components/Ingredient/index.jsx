@@ -1,22 +1,22 @@
 import { Container } from "./styles";
 import { FiPlus, FiX } from "react-icons/fi";
 
-export function Ingredient({ isnew = false, value, onClick, ...rest }) {
+export function Ingredient({ isNew = false, value, onClick, ...rest }) {
   return (
-    <Container $isnew={isnew.toString()}>
-      {!isnew && 
+    <Container $isnew={isNew}>
+      {!isNew && 
         <div>
           {value}
           <button onClick={onClick} type="button">
             <FiX />
           </button>
         </div>}
-      {isnew && (
+      {isNew && (
         <>
           <input
             type="text"
             name="ingredient"
-            readOnly={!isnew}
+            readOnly={!isNew}
             value={value}
             {...rest}
           />

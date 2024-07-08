@@ -22,7 +22,7 @@ export const Container = styled.div`
     font-size: 1.6rem;
 
     background-color: ${({ theme }) => theme.COLORS.Dark_900};
-    color: ${({ theme }) => theme.COLORS.Light_400};
+    color: ${({ theme }) => theme.COLORS.Light_500};
 
     appearance: none;
     -webkit-appearance: none;
@@ -32,12 +32,12 @@ export const Container = styled.div`
     background-position: right 1.6rem top 50%;
 
     > option {
-      color: ${({ theme }) => theme.COLORS.Light_400};
+      color: ${({ theme }) => theme.COLORS.Light_500};
     }
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 1px ${({ theme }) => theme.COLORS.Light_400};
+      box-shadow: 0 0 0 1px ${({ theme }) => theme.COLORS.Light_500};
     }
     
   }

@@ -145,10 +145,9 @@ export function DishForm() {
               value={category} 
               setValue={setCategory} 
               options={[
-                { value: "massas", label: "Massas" },
-                { value: "carnes", label: "Carnes" },
-                { value: "saladas", label: "Saladas" },
-                { value: "sobremesas", label: "Sobremesas" }
+                { value: "refeições", label: "Refeições" },
+                { value: "sobremesas", label: "Sobremesas" },
+                { value: "bebidas", label: "Bebidas" },
               ]} 
             />
           </div>

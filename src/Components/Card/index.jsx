@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 
-export function Card({ image, title, description, price, onClick, favorite = false }) {
+export function Card({ dishId, image, title, description, price, onClick, favorite = false }) {
   const [isFavorite, setIsFavorite] = useState(favorite);
 
   const handleFavorite = () => {
@@ -23,7 +23,7 @@ export function Card({ image, title, description, price, onClick, favorite = fal
 
   const handleEdit = () => {
     //temporarily hardcoded
-    navigate('/dish/1');
+    navigate(`/dish/edit/${dishId}`);
   }
   
   return (

@@ -72,7 +72,8 @@ export function Slider({category}) {
           {dishes.map((dish, index) => (
             <SplideSlide key={`dish_${index}`}>
               <Card
-                onClick={() => navigate(`/dish/${index}`)}
+                dishId={dish.id}
+                onClick={() => navigate(`/dish/${dish.id}`)}
                 image={dish.image_url}
                 title={dish.name}
                 description={dish.description}

@@ -78,12 +78,14 @@ export const Container = styled.div`
       font-weight: 500;
       font-family: ${({ theme }) => theme.FONTS.Poppins};
       color: ${({ theme }) => theme.COLORS.Light_300};
+      text-align: center;
 
       line-height: 24px;
     }
 
     p {    
       display: none;
+      text-align: center;
     }
     .price {
       

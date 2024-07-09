@@ -116,7 +116,7 @@ export const Container = styled.div`
         width: 70rem;
         align-items: start;
 
-        .tags {
+        .ingredients {
           width: auto;
           padding: 0;
         }

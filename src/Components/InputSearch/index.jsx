@@ -2,10 +2,12 @@ import { Container, SearchResults } from './styles';
 import { FiSearch } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 export function InputSearch() {
   const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (search === '') {
@@ -34,7 +36,7 @@ export function InputSearch() {
         <SearchResults>
           <ul>
             {results.map(result => (
-              <li key={result.id}>{result.name}</li>
+              <li key={result.id} onClick={() => navigate(`/dish/${result.id}`)}>{result.name}</li>
             ))}
           </ul>
         </SearchResults>

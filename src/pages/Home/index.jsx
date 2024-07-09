@@ -16,9 +16,9 @@ export function Home() {
                 </div>
             </Banner>
             <Content>
-                <Slider category={{value: 'refeicoes', label: 'Refeições'}} /> 
-                <Slider category={{value: 'sobremesas', label: 'Sobremesas'}} />
-                <Slider category={{value: 'bebidas', label: 'Bebidas'}} />
+                <Slider category={{value: 'meals', label: 'Refeições'}} /> 
+                <Slider category={{value: 'desserts', label: 'Sobremesas'}} />
+                <Slider category={{value: 'drinks', label: 'Bebidas'}} />
             </Content>
             <Footer />
         </Container>

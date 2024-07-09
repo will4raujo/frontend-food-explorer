@@ -47,7 +47,7 @@ export function Dish() {
           {user.role === 'customer' && <div className="buttons-container">
             <ButtonControl />
             <Button>
-              {`incluir ∙ R$ 25,00`}
+              {`incluir ∙ R$ ${dish?.price}`}
             </Button>
           </div>}
           {user.role === 'admin' && <div className="buttons-container">

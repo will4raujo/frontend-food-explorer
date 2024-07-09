@@ -10,7 +10,7 @@ export function Slider({category}) {
   const [dishes, setDishes] = useState([]);
 
   useEffect(() => {
-    api.get(`/dishes/${category.value}`).then(response => {
+    api.get(`/dishes/category?c=${category.value}`).then(response => {
       setDishes(response.data.map(dish => {
         return {
           ...dish,

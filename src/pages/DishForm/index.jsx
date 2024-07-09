@@ -18,6 +18,8 @@ export function DishForm() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
+  const [imageFile, setImageFile] = useState(null)
+
   const [ingredient, setIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const addIngredient = () => {
@@ -49,25 +51,76 @@ export function DishForm() {
     setPrice(formattedValue)
   }
 
+  const handleUploadImage = (e) => {
+    const file = e.target.files[0];
+    
+    setImageFile(file);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const data = {
-      name,
-      category,
-      price: parseFloat(price.replace(/\D/g, '')) / 100,
-      description,
-      ingredients,
+    
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("price", parseFloat(price.replace(/\D/g, '')) / 100);
+    formData.append("description", description);
+    formData.append("ingredients", JSON.stringify(ingredients)); // Converta o array para string
+    
+    if (imageFile) {
+        formData.append("image", imageFile);
     }
     try {
-      await api.post("/dishes", data);
-      alert("Prato cadastrado com sucesso!");
-      navigate('/');
+      if (id === 'new') {
+          await api.post("/dishes", formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          });
+          alert("Prato cadastrado com sucesso!");
+          navigate('/');
 
-    } catch (error) {
+      } else {
+          await api.put(`/dishes/${id}`, formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          });
+          alert("Prato atualizado com sucesso!");
+          navigate('/');
+      }
+  } catch (error) {
       console.error(error);
+  }
+  }
+
+  const handleDelete = async () => {
+    const confirm = window.confirm("Tem certeza que deseja excluir este prato?");
+
+    if (confirm) {
+      try {
+        await api.delete(`/dishes/${id}`);
+        alert("Prato excluído com sucesso!");
+        navigate('/');
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
+
+  useEffect(() => {
+    if ( id !== 'new') {
+      const fetchDish = async () => {
+        const { data } = await api.get(`/dishes/${id}`);
+        setName(data.name);
+        setCategory(data.category);
+        setIngredients(data.ingredients.map(ingredient => ingredient.name));
+        setPrice(data.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+        setDescription(data.description);
+      }
+      fetchDish();
+    }
+  }, [id]);
 
   return (
     <Container>
@@ -82,20 +135,19 @@ export function DishForm() {
               <label htmlFor="image">
                 <PiUploadSimple size={24} />
                 Selecione imagem
-                <input type="file" id="image" />
+                <input type="file" id="image" onChange={handleUploadImage} />
               </label>
             </FileInput>
-            <Input type="text" name="name" text={"Nome do prato"} placeholder={"Nome do prato"} onChange={(e) => setName(e.target.value)} />
+            <Input type="text" name="name" text={"Nome do prato"} placeholder={"Nome do prato"} value={name} onChange={(e) => setName(e.target.value)} />
             <Select 
               title="Categoria" 
               name="category" 
               value={category} 
               setValue={setCategory} 
               options={[
-                { value: "massas", label: "Massas" },
-                { value: "carnes", label: "Carnes" },
-                { value: "saladas", label: "Saladas" },
-                { value: "sobremesas", label: "Sobremesas" }
+                { value: "refeições", label: "Refeições" },
+                { value: "sobremesas", label: "Sobremesas" },
+                { value: "bebidas", label: "Bebidas" },
               ]} 
             />
           </div>
@@ -125,11 +177,12 @@ export function DishForm() {
             placeholder={
               "Fale brevemente sobre o prato, seus ingredientes e composição"
             }
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </form>
         <div className="action-buttons">
-          {id !== 'new' && <GhostButton>Excluir prato</GhostButton>}
+          {id !== 'new' && <GhostButton onClick={handleDelete}>Excluir prato</GhostButton>}
           <SubmitButton onClick={handleSubmit}>Salvar alterações</SubmitButton>
         </div>
       </main>

@@ -3,7 +3,7 @@ import { FiPlus, FiX } from "react-icons/fi";
 
 export function Ingredient({ isNew = false, value, onClick, ...rest }) {
   return (
-    <Container isNew={isNew}>
+    <Container $isnew={isNew}>
       {!isNew && 
         <div>
           {value}

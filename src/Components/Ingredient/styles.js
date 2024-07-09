@@ -6,10 +6,10 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
-  border: ${({ theme, isNew }) => isNew ? `1px dashed ${ theme.COLORS.Light_600 }` : theme.COLORS.Light_100};
+  border: ${({ theme, $isnew }) => $isnew ? `1px dashed ${ theme.COLORS.Light_600 }` : theme.COLORS.Light_100};
   border-radius: 10px;
 
-  background-color: ${ ({ theme, isNew}) => isNew ? 'transparent' : theme.COLORS.Light_600};
+  background-color: ${ ({ theme, $isnew}) => $isnew ? 'transparent' : theme.COLORS.Light_600};
   
   > div {
     height: 100%;
@@ -72,7 +72,7 @@ export const Container = styled.div`
       border: none;
       background: transparent;
       
-      color: ${({ theme, isNew }) => isNew ? theme.COLORS.Light_600 : theme.COLORS.Light_100};
+      color: ${({ theme, $isnew }) => $isnew ? theme.COLORS.Light_600 : theme.COLORS.Light_100};
 
       cursor: pointer;
 

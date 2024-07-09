@@ -65,7 +65,7 @@ export const Container = styled.div`
         font-family: ${({ theme }) => theme.FONTS.Poppins};
       }
 
-      .tags {
+      .ingredients {
         width: 32rem;
         padding: 2.85rem;
 

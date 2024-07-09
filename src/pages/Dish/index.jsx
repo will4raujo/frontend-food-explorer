@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Container } from "./styles";
 import { Header } from "../../Components/Header";
 import { Footer } from "../../Components/Footer";
@@ -7,14 +8,24 @@ import { ButtonControl } from "../../Components/ButtonControl";
 import { Button } from "../../Components/Button";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
+import api from "../../services/api";
 
 export function Dish() {
   const { id } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [dish, setDish] = useState();
 
-  const productImage = `/src/assets/product_images/product-${id}.png`;
-
+  useEffect(() => {
+    api.get(`/dishes/${id}`).then(response => {
+      const dishData = response.data;
+      setDish({
+        ...dishData,
+        image_url: `${api.defaults.baseURL}/files/${dishData.image_url}`
+      });
+    });
+  }, [id]);
+  
   return (
     <Container>
       <Header />
@@ -23,18 +34,15 @@ export function Dish() {
           <ButtonText icon={PiCaretLeftLight} to="/">
             voltar
           </ButtonText>
-          <img src={productImage} alt="Nome do prato" />
+          <img src={dish?.image_url} alt={dish?.name} />
         </div>
         <div className="col-2">
-          <h1>Nome do prato</h1>
-          <p>Descrição do prato</p>
-          <div className="tags">
-            <span>alface</span>
-            <span>cebola</span>
-            <span>pão naan</span>
-            <span>pepino</span>
-            <span>rabanete</span>
-            <span>tomate</span>
+          <h1>{dish?.name}</h1>
+          <p>{dish?.description}</p>
+          <div className="ingredients">
+            {dish?.ingredients.map(ingredient => (
+              <span key={ingredient.id}>{ingredient.name}</span>
+            ))}
           </div>
           {user.role === 'customer' && <div className="buttons-container">
             <ButtonControl />
@@ -43,7 +51,7 @@ export function Dish() {
             </Button>
           </div>}
           {user.role === 'admin' && <div className="buttons-container">
-            <Button onClick={() => navigate(`/dish`)}>
+            <Button onClick={() => navigate(`/dish/edit/${id}`)}>
               {`editar`}
             </Button>
           </div>

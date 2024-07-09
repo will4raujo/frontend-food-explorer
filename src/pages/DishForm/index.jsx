@@ -18,6 +18,8 @@ export function DishForm() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
+  const [imageFile, setImageFile] = useState(null)
+
   const [ingredient, setIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const addIngredient = () => {
@@ -49,30 +51,47 @@ export function DishForm() {
     setPrice(formattedValue)
   }
 
+  const handleUploadImage = (e) => {
+    const file = e.target.files[0];
+    
+    setImageFile(file);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const data = {
-      name,
-      category,
-      price: parseFloat(price.replace(/\D/g, '')) / 100,
-      description,
-      ingredients,
+    
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("price", parseFloat(price.replace(/\D/g, '')) / 100);
+    formData.append("description", description);
+    formData.append("ingredients", JSON.stringify(ingredients)); // Converta o array para string
+    
+    if (imageFile) {
+        formData.append("image", imageFile);
     }
     try {
       if (id === 'new') {
-        await api.post("/dishes", data);
-        alert("Prato cadastrado com sucesso!");
-        navigate('/');
-      } else {
-        await api.put(`/dishes/${id}`, data);
-        alert("Prato atualizado com sucesso!");
-        navigate('/');
-      }
+          await api.post("/dishes", formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          });
+          alert("Prato cadastrado com sucesso!");
+          navigate('/');
 
-    } catch (error) {
+      } else {
+          await api.put(`/dishes/${id}`, formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          });
+          alert("Prato atualizado com sucesso!");
+          navigate('/');
+      }
+  } catch (error) {
       console.error(error);
-    }
+  }
   }
 
   const handleDelete = async () => {
@@ -116,7 +135,7 @@ export function DishForm() {
               <label htmlFor="image">
                 <PiUploadSimple size={24} />
                 Selecione imagem
-                <input type="file" id="image" />
+                <input type="file" id="image" onChange={handleUploadImage} />
               </label>
             </FileInput>
             <Input type="text" name="name" text={"Nome do prato"} placeholder={"Nome do prato"} value={name} onChange={(e) => setName(e.target.value)} />

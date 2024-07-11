@@ -39,7 +39,7 @@ export function Header() {
             </div>
             <div className="desktop-button-container">
                 {user.role === 'customer' &&                
-                    <Button title={`Pedidos (${orders})`}>
+                    <Button title={`Pedidos (${orders})`} onClick={() => navigate('/orders')} >
                         <img src={orderIcon} alt="Notification"/>
                     </Button>
                 }
@@ -50,7 +50,7 @@ export function Header() {
 
             <div className="mobile-button-container">
                 { user.role === 'customer' &&
-                    <img src={orderIcon} alt="Notification"/>
+                    <img src={orderIcon} alt="Notification" onClick={() => navigate('/orders')}/>
                 }
             </div>
 

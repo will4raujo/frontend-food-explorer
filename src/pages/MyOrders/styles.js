@@ -21,7 +21,7 @@ export const Container = styled.div`
     padding: 5.6rem 3.5rem 5.8rem 3.5rem;
   }
 `
-export const OrdersContainer = styled.div`  
+export const Orders = styled.div`  
   display: flex;
   flex-direction: column;
   gap: 2.4rem;

@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Home } from '../pages/Home';
 import { Dish } from '../pages/Dish';
 import { DishForm } from '../pages/DishForm';
-import { Orders } from '../pages/Orders';
+import { MyOrders } from '../pages/MyOrders';
 
 export function AppRoutes() {
   return (
@@ -11,7 +11,7 @@ export function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/dish/:id" element={<Dish />} />
       <Route path="/dish/edit/:id" element={<DishForm />} />
-      <Route path="/orders" element={<Orders />} />
+      <Route path="/orders" element={<MyOrders />} />
     </Routes>
   );
 }

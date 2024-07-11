@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Header } from "../../Components/Header"
-import { Container, Item, Payment, OrdersContainer } from "./styles"
+import { Container, Item, Payment, Orders } from "./styles"
 import { Footer } from "../../Components/Footer"
 import { Button } from "../../Components/Button"
 import { Input } from "../../Components/Input"
@@ -12,7 +12,7 @@ import clock from "../../assets/icons/clock.svg"
 import circleCheck from "../../assets/icons/circle-check.svg"
 import forkKnife from "../../assets/icons/fork-knife.svg"
 
-export function Orders() {
+export function MyOrders() {
   const image = `${api.defaults.baseURL}/files/salada-ravanello.png`
   
   const [showOrder, setShowOrder] = useState(true)

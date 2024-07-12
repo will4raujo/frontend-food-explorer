@@ -8,6 +8,7 @@ import { FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";
+import { ButtonText } from "../ButtonText";
 
 export function Header() {
     const navigate = useNavigate();
@@ -37,20 +38,23 @@ export function Header() {
             <div className="search-container">
                 <InputSearch/>
             </div>
+            {user.role === 'admin' && 
+                <ButtonText onClick={() => navigate('/dish/edit/new')}>Novo prato</ButtonText>
+            } 
             <div className="desktop-button-container">
                 {user.role === 'customer' &&                
-                    <Button title={`Pedidos (${orders})`} onClick={() => navigate('/orders')} >
+                    <Button title={`Pedidos (${orders})`} onClick={() => navigate('/my-orders')} >
                         <img src={orderIcon} alt="Notification"/>
                     </Button>
                 }
-                {user.role === 'admin' &&
-                    <Button title="Novo prato" onClick={() => navigate('/dish/edit/new')}/>
+                {user.role === 'admin' && 
+                    <Button title="Pedidos" onClick={() => navigate('/orders')}/>
                 } 
             </div>
 
             <div className="mobile-button-container">
                 { user.role === 'customer' &&
-                    <img src={orderIcon} alt="Notification" onClick={() => navigate('/orders')}/>
+                    <img src={orderIcon} alt="Notification" onClick={() => navigate('/my-orders')}/>
                 }
             </div>
 

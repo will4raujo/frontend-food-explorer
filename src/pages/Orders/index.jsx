@@ -11,8 +11,8 @@ export function Orders() {
 
   const options = [
     { value: 'pending', label: 'Pendente' },
-    { value: 'confirmed', label: 'Preparando' },
-    { value: 'delivered', label: 'Finalizado' }
+    { value: 'preparing', label: 'Preparando' },
+    { value: 'finished', label: 'Finalizado' }
   ]
 
   const updateOrderStatus = (orderId, status) => {

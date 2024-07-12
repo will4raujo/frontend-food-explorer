@@ -55,8 +55,8 @@ export const Container = styled.div`
     border-radius: 50%;
     background-color: ${({ theme, $semaphore }) => {
       if ($semaphore === 'pending') return theme.COLORS.Tomato_300;
-      if ($semaphore === 'confirmed') return theme.COLORS.Carrot_100;
-      if ($semaphore === 'delivered') return theme.COLORS.Mint_100;
+      if ($semaphore === 'preparing') return theme.COLORS.Carrot_100;
+      if ($semaphore === 'finished') return theme.COLORS.Mint_100;
     }};
     z-index: 10;
   }

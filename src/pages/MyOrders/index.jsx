@@ -11,15 +11,19 @@ import qrCode from "../../assets/images/qrcode.png"
 import clock from "../../assets/icons/clock.svg"
 import circleCheck from "../../assets/icons/circle-check.svg"
 import forkKnife from "../../assets/icons/fork-knife.svg"
+import { useCart } from "../../hooks/cart"
 
 export function MyOrders() {
-  const image = `${api.defaults.baseURL}/files/salada-ravanello.png`
   
   const [showOrder, setShowOrder] = useState(true)
   const [showPayments, setShowPayments] = useState(false)
   
   const [paymentMethod, setPaymentMethod] = useState('pix')
   const [status, setStatus] = useState('')
+
+  const { cart, clearCart } = useCart()
+  const [dishes, setDishes] = useState([])
+  const [total, setTotal] = useState(0)
 
   const handleShowPayments = (e) => {
     e.preventDefault();
@@ -30,6 +34,22 @@ export function MyOrders() {
   const handleFinishPayment = (e) => {
     e.preventDefault();
     setStatus('pending');
+
+    api.post('/orders', {
+      dishes: dishes.map(dish => ({
+        id: dish.id,
+        name: dish.name,
+        quantity: dish.quantity
+      })),
+      total,
+      payment_method: paymentMethod,
+      status: 'pending'
+    }).then(response => {
+      alert('Pedido realizado com sucesso!')
+      clearCart()
+    }).catch(error => {
+      alert({ error })
+    })
   }
 
   function OrderStatus() {
@@ -75,6 +95,30 @@ export function MyOrders() {
   }
 
   useEffect(() => {
+    const fetchDishes = async () => {
+      const dishPromises = cart.map(async item => {
+        const response = await api.get(`/dishes/${item.dishId}`)
+        return {
+          ...response.data,
+          quantity: item.quantity,
+          image_url: `${api.defaults.baseURL}/files/${response.data.image_url}`,
+        }
+      })
+
+      const dishData = await Promise.all(dishPromises)
+      setDishes(dishData)
+    }
+    fetchDishes()
+  }, []);
+
+  useEffect(() => {
+    const totalValue = dishes.reduce((acc, dish) => {
+      return acc + dish.price * dish.quantity
+    }, 0)
+    setTotal(totalValue)
+  }, [dishes])
+
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setShowPayments(true)
@@ -100,35 +144,22 @@ export function MyOrders() {
             <Orders>
               <h1>Meu pedido</h1>
               <div>
-                <Item>
-                  <div>
-                    <img src={image} alt="Imagem do pedido" />
-                  </div>
-                  <div>
-                    <h2>prato 1</h2>
-                    <span>Remover dos favoritos</span>
-                  </div>
-                </Item>
-                <Item>
-                  <div>
-                    <img src={image} alt="Imagem do prato" />
-                  </div>
-                  <div>
-                    <h2>prato 2</h2>
-                    <span>Remover dos favoritos</span>
-                  </div>
-                </Item>
-                <Item>
-                  <div>
-                    <img src={image} alt="Imagem do prato" />
-                  </div>
-                  <div>
-                    <h2>prato 3</h2>
-                    <span>Remover dos favoritos</span>
-                  </div>
-                </Item>
+                {dishes.map((dish, index) => (
+                  <Item key={index}>
+                    <div>
+                      <img src={dish.image_url} alt="Imagem do pedido" />
+                    </div>
+                    <div>
+                      <div>
+                        <h2>{`${dish.quantity} x ${dish.name}`}</h2>
+                        <span>R$ {dish.price.toFixed(2).replace('.', ',')}</span>
+                      </div>
+                        <span>Excluir</span>
+                    </div>
+                  </Item>
+                ))}
               </div>
-              <p>Total: R$ 100,00</p>
+              <p>Total: R$ {total.toFixed(2)}</p>
               { !showPayments &&
                 <Button title="Avançar" onClick={handleShowPayments} />
               }

@@ -49,9 +49,7 @@ export const Orders = styled.div`
   }
   
 
-  @media (max-width: 1024px) {
-
-    width: 44.4rem;
+  @media (min-width: 1024px) {
     
   }
 `
@@ -69,14 +67,30 @@ export const Item = styled.div`
   }
 
   > div:nth-child(2) {
-    h2 {
+
+
+    > div {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 1rem;
+      
+      h2 {
       font-size: 2rem;
       font-weight: 500;
       line-height: 160%;
       font-family: ${({ theme }) => theme.FONTS.Poppins};
       color: ${({ theme }) => theme.COLORS.Light_300};
+      }
+
+      > span {
+        font-size: 1.2rem;
+        color: ${({ theme }) => theme.COLORS.Light_400};
+        cursor: pointer;
+      }
     }
-    span {
+
+    > span {
       font-size: 1.2rem;
       color: ${({ theme }) => theme.COLORS.Tomato_400};
       cursor: pointer;
@@ -169,5 +183,9 @@ export const Payment = styled.div`
           
         }
       }
+    }
+
+    @media (min-width: 1024px) {
+      max-width: 53rem;
     }
 `

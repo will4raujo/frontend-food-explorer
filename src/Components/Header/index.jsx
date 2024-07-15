@@ -15,7 +15,7 @@ export function Header() {
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState('');
 
   const handleMenu = () => {
     setMenuIsOpen(!menuIsOpen);
@@ -33,7 +33,7 @@ export function Header() {
   const updateTotal = () => {
     const storedCart = localStorage.getItem('@foodexplorer:cart');
     const parsedCart = storedCart ? JSON.parse(storedCart) : [];
-    const totalQuantity = parsedCart.reduce((acc, item) => acc + item.quantity, 0);
+    const totalQuantity = `(${parsedCart.reduce((acc, item) => acc + item.quantity, 0)})`;
     setTotal(totalQuantity);
   };
 
@@ -71,7 +71,7 @@ export function Header() {
       }
       <div className="desktop-button-container">
         {user.role === 'customer' &&
-          <Button title={`Pedidos (${total})`} onClick={() => navigate('/my-orders')}>
+          <Button title={`Pedidos ${total}`} onClick={() => navigate('/my-orders')}>
             <img src={orderIcon} alt="Notification" />
           </Button>
         }

@@ -31,8 +31,9 @@ export function CartProvider({ children }) {
     });
   }
 
-  function removeFromCart(dishId) {
-    setCart(prevCart => prevCart.filter(item => item.dishId !== dishId));
+  function clearCart() {
+    setCart([]);
+    localStorage.removeItem('@foodexplorer:cart');
   }
 
   useEffect(() => {
@@ -41,7 +42,7 @@ export function CartProvider({ children }) {
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

@@ -16,7 +16,10 @@ export function Orders() {
   ]
 
   const updateOrderStatus = (orderId, status) => {
-    api.put(`/orders/${orderId}`, { status })
+    api.put(`/orders/${orderId}`, { status }).then(response => {
+      console.log(response.data);
+    }).catch(error => console.error(error));
+    
   }
 
   const handleStatusChange = (index, newStatus) => {

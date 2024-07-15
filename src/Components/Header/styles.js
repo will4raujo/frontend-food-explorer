@@ -97,7 +97,7 @@ export const BurgerMenu = styled.div`
   }
 `;
 
-export const LogOut = styled(Link)`
+export const LogOut = styled.button`
 
     display: flex;
     justify-content: center;

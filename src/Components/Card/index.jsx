@@ -6,9 +6,20 @@ import { PiPencilSimpleLight } from 'react-icons/pi';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
+import { useCart } from '../../hooks/cart';
 
 export function Card({ dishId, image, title, description, price, onClick, favorite = false }) {
   const [isFavorite, setIsFavorite] = useState(favorite);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
+
+  const handleQuantityChange = (newQuantity) => {
+    setQuantity(newQuantity);
+  };
+
+  const handleSendToCart = () => {
+    addToCart({dishId, quantity});
+  }
 
   const handleFavorite = () => {
     setIsFavorite(prev => !prev);
@@ -22,7 +33,6 @@ export function Card({ dishId, image, title, description, price, onClick, favori
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    //temporarily hardcoded
     navigate(`/dish/edit/${dishId}`);
   }
   
@@ -45,8 +55,8 @@ export function Card({ dishId, image, title, description, price, onClick, favori
 
       {user.role === 'customer' && 
         <div className='action-buttons'>
-          <ButtonControl />
-          <Button>Incluir</Button>
+          <ButtonControl dishId={dishId} onQuantityChange={handleQuantityChange}/>
+          <Button onClick={handleSendToCart}>Incluir</Button>
         </div>
       }
 

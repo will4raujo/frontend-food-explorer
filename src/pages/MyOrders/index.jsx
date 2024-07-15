@@ -97,7 +97,7 @@ export function MyOrders() {
         <Header />
         <main>
           {showOrder &&
-            <OrdersContainer>
+            <Orders>
               <h1>Meu pedido</h1>
               <div>
                 <Item>
@@ -132,7 +132,7 @@ export function MyOrders() {
               { !showPayments &&
                 <Button title="Avançar" onClick={handleShowPayments} />
               }
-            </OrdersContainer>
+            </Orders>
           }
           {showPayments && (
             <Payment>

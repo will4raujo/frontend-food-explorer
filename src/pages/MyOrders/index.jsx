@@ -4,6 +4,7 @@ import { Container, Item, Payment, Orders } from "./styles";
 import { Footer } from "../../Components/Footer";
 import { Button } from "../../Components/Button";
 import { Input } from "../../Components/Input";
+import { DishItem } from "../../Components/DishItem";
 import api from "../../services/api";
 import creditCardIcon from "../../assets/icons/credit-card.svg";
 import pixIcon from "../../assets/icons/pix.svg";
@@ -214,18 +215,7 @@ export function MyOrders() {
               <h1>Meu pedido</h1>
               <div>
                 {dishes.map((dish, index) => (
-                  <Item key={index}>
-                    <div>
-                      <img src={dish.image_url} alt="Imagem do pedido" />
-                    </div>
-                    <div>
-                      <div>
-                        <h2>{`${dish.quantity} x ${dish.name}`}</h2>
-                        <span>R$ {dish.price.toFixed(2).replace('.', ',')}</span>
-                      </div>
-                        <span onClick={() => handleRemoveItem(dish.id)}>Excluir</span>
-                    </div>
-                  </Item>
+                  <DishItem key={index} image={dish.image_url} name={dish.name} price={dish.price} quantity={dish.quantity} handleRemoveItem={() => handleRemoveItem(dish.id)} />
                 ))}
 
                 {dishes.length === 0 && <p>Nenhum item no carrinho</p>}

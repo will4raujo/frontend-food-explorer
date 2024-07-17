@@ -194,6 +194,7 @@ export const Payment = styled.div`
 
           button {
             width: 21.6rem;
+          }
         }
       }
     }

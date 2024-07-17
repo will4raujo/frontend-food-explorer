@@ -133,6 +133,8 @@ export const Payment = styled.div`
          
         color: ${({ theme }) => theme.COLORS.Light_300};
         font-size: 1.6rem;
+
+        cursor: pointer;
       }
 
       > button:nth-child(1) {
@@ -170,7 +172,7 @@ export const Payment = styled.div`
           }
         }
 
-        .waiting-payment, .confirmed-payment, .delivered-order {
+        .waiting-payment, .confirmed-payment, .finished-order {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -181,6 +183,17 @@ export const Payment = styled.div`
           color: ${({ theme }) => theme.COLORS.Light_400};
           font-size: 2rem;
           
+        }
+
+        .finished-order {
+          img {
+            scale: 4;
+            margin-top: 3.5rem;
+            margin-bottom: 3.2rem;
+          }
+
+          button {
+            width: 21.6rem;
         }
       }
     }

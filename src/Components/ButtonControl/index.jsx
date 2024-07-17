@@ -1,12 +1,10 @@
 import { Container } from "./styles";
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
-import { useCart } from "../../hooks/cart";
 
-export function ButtonControl({ onQuantityChange, dishId }) {
+export function ButtonControl({ onQuantityChange, clearQuantity }) {
   const [quantity, setQuantity] = useState(0);
   const [displayQuantity, setDisplayQuantity] = useState(`0${quantity}`);
-  const { cart } = useCart();
 
   const handleMinus = () => {
     setQuantity(prev => Math.max(prev - 1, 0));
@@ -25,13 +23,13 @@ export function ButtonControl({ onQuantityChange, dishId }) {
     
     onQuantityChange(quantity);
   }, [quantity, onQuantityChange]);
-  
+
   useEffect(() => {
-    const item = cart.find(item => item.dishId === dishId);
-    if (item) {
-      setQuantity(item.quantity);
+    if (clearQuantity) {
+      setQuantity(0);
+      clearQuantity = false;
     }
-  }, [cart, dishId]);
+  }, [clearQuantity]);
 
   return (
     <Container>

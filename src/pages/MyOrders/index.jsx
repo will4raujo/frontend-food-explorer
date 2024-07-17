@@ -1,35 +1,43 @@
-import { useState, useEffect } from "react"
-import { Header } from "../../Components/Header"
-import { Container, Item, Payment, Orders } from "./styles"
-import { Footer } from "../../Components/Footer"
-import { Button } from "../../Components/Button"
-import { Input } from "../../Components/Input"
-import api from "../../services/api"
-import creditCardIcon from "../../assets/icons/credit-card.svg"
-import pixIcon from "../../assets/icons/pix.svg"
-import qrCode from "../../assets/images/qrcode.png"
-import clock from "../../assets/icons/clock.svg"
-import circleCheck from "../../assets/icons/circle-check.svg"
-import forkKnife from "../../assets/icons/fork-knife.svg"
-import { useCart } from "../../hooks/cart"
+import { useState, useEffect } from "react";
+import { Header } from "../../Components/Header";
+import { Container, Item, Payment, Orders } from "./styles";
+import { Footer } from "../../Components/Footer";
+import { Button } from "../../Components/Button";
+import { Input } from "../../Components/Input";
+import api from "../../services/api";
+import creditCardIcon from "../../assets/icons/credit-card.svg";
+import pixIcon from "../../assets/icons/pix.svg";
+import qrCode from "../../assets/images/qrcode.png";
+import clock from "../../assets/icons/clock.svg";
+import circleCheck from "../../assets/icons/circle-check.svg";
+import forkKnife from "../../assets/icons/fork-knife.svg";
+import { useCart } from "../../hooks/cart";
+import { useNavigate } from "react-router-dom";
 
 export function MyOrders() {
-  
-  const [showOrder, setShowOrder] = useState(true)
-  const [showPayments, setShowPayments] = useState(false)
-  
-  const [paymentMethod, setPaymentMethod] = useState('pix')
-  const [status, setStatus] = useState('')
+  const [showOrder, setShowOrder] = useState(true);
+  const [showPayments, setShowPayments] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('pix');
+  const [status, setStatus] = useState('');
 
-  const { cart, clearCart } = useCart()
-  const [dishes, setDishes] = useState([])
-  const [total, setTotal] = useState(0)
+  const { cart, clearCart, removeFromCart } = useCart();
+  const [dishes, setDishes] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  const [orderId, setOrderId] = useState(() => {
+    const storedCart = JSON.parse(localStorage.getItem('@foodexplorer:cart'));
+    return storedCart ? storedCart.id : null;
+  });
+  
+  const [orderHasStarted, setOrderHasStarted] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleShowPayments = (e) => {
     e.preventDefault();
     setShowPayments(true);
     setShowOrder(false);
-  }
+  };
 
   const handleFinishPayment = (e) => {
     e.preventDefault();
@@ -43,14 +51,78 @@ export function MyOrders() {
       })),
       total,
       payment_method: paymentMethod,
-      status: 'pending'
     }).then(response => {
-      alert('Pedido realizado com sucesso!')
-      clearCart()
+      alert(response.data.message);
+      localStorage.setItem('@foodexplorer:cart', JSON.stringify({ id: response.data.id, items: cart.items }));
+      setOrderId(response.data.id);
+      setOrderHasStarted(true);
     }).catch(error => {
-      alert({ error })
-    })
-  }
+      alert(error);
+    });
+  };
+
+  const handleRemoveItem = (dishId) => {
+    const confirm = window.confirm('Deseja realmente remover este item do carrinho?');
+    if (confirm){ 
+      removeFromCart(dishId)
+      if (cart.items.length === 0) {
+        setShowOrder(false);
+        navigate('/')
+      }
+    }
+  };
+
+  useEffect(() => {
+    let intervalId;
+
+    const consultOrderStatus = () => {
+      if (orderId !== null) {
+        console.log('Consultando status do pedido');
+        console.log('Order ID:', orderId);
+        api.get(`/orders/${orderId}`)
+          .then(response => {
+            setStatus(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      } else {
+        alert('Pedido não encontrado');
+      }
+    };
+
+    if (orderId !== null) {
+      setOrderHasStarted(true);
+    }
+
+    if (orderHasStarted && orderId !== null && status !== 'finished') {
+      console.log('Iniciando consulta de status');
+      console.log('Status atual:', status);
+      intervalId = setInterval(() => {
+        consultOrderStatus();
+      }, 1000);
+    }
+
+    if (status === 'finished') {
+      clearCart();
+    }
+
+    return () => clearInterval(intervalId);
+  }, [orderId, orderHasStarted, status]);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (status === 'finished') {
+        clearCart();
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [status, clearCart]);
 
   function OrderStatus() {
     switch (status) {
@@ -62,24 +134,21 @@ export function MyOrders() {
               <p>Aguardando pagamento no caixa</p>                    
             </div>
           </div>
-        )
-      case 'confirmed':
+        );
+      case 'preparing':
         return (
           <div className="confirmed-payment">
             <img src={circleCheck} alt="Círculo com check" />
-            <p>Pagamento confirmado</p>
-            <p>Seu pedido está a caminho</p>
-            <Button title="Acompanhar Pedido" />
+            <p>Pagamento aprovado</p>
           </div>
-        )
-      case 'delivered':
+        );
+      case 'finished':
         return (
-          <div className="delivered-order">
+          <div className="finished-order">
             <img src={forkKnife} alt="Garfo e Faca" />
             <p>Pedido entregue</p>
-            <Button title="Fazer outro pedido" />
           </div>
-        )
+        );
       default:
         return (
           <form>
@@ -90,50 +159,50 @@ export function MyOrders() {
             </div>
             <Button title="Finalizar Pagamento" onClick={handleFinishPayment} />
           </form>
-        )
+        );
     }
   }
 
   useEffect(() => {
     const fetchDishes = async () => {
-      const dishPromises = cart.map(async item => {
-        const response = await api.get(`/dishes/${item.dishId}`)
+      const dishPromises = cart.items.map(async item => {
+        const response = await api.get(`/dishes/${item.dishId}`);
         return {
           ...response.data,
           quantity: item.quantity,
           image_url: `${api.defaults.baseURL}/files/${response.data.image_url}`,
-        }
-      })
+        };
+      });
 
-      const dishData = await Promise.all(dishPromises)
-      setDishes(dishData)
-    }
-    fetchDishes()
-  }, []);
+      const dishData = await Promise.all(dishPromises);
+      setDishes(dishData);
+    };
+    fetchDishes();
+  }, [cart.items]);
 
   useEffect(() => {
     const totalValue = dishes.reduce((acc, dish) => {
-      return acc + dish.price * dish.quantity
-    }, 0)
-    setTotal(totalValue)
-  }, [dishes])
+      return acc + dish.price * dish.quantity;
+    }, 0);
+    setTotal(totalValue);
+  }, [dishes]);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setShowPayments(true)
+        setShowPayments(true);
       } else {
-        setShowPayments(false)
+        setShowPayments(false);
       }
-    }
+    };
 
-    window.addEventListener('resize', handleResize)
-    handleResize()
+    window.addEventListener('resize', handleResize);
+    handleResize();
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div>
@@ -154,7 +223,7 @@ export function MyOrders() {
                         <h2>{`${dish.quantity} x ${dish.name}`}</h2>
                         <span>R$ {dish.price.toFixed(2).replace('.', ',')}</span>
                       </div>
-                        <span>Excluir</span>
+                        <span onClick={() => handleRemoveItem(dish.id)}>Excluir</span>
                     </div>
                   </Item>
                 ))}
@@ -166,7 +235,7 @@ export function MyOrders() {
             </Orders>
           }
           {showPayments && (
-            <Payment>
+            <Payment $paymentmethod={paymentMethod}>
               <h1>Pagamento</h1>
               <div className="payment-container">
                 <button onClick={() => setPaymentMethod('pix')}>
@@ -187,5 +256,5 @@ export function MyOrders() {
         <Footer />
       </Container>
     </div>
-  )
+  );
 }

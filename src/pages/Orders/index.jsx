@@ -17,9 +17,11 @@ export function Orders() {
 
   const updateOrderStatus = (orderId, status) => {
     api.put(`/orders/${orderId}`, { status }).then(response => {
-      console.log(response.data);
-    }).catch(error => console.error(error));
-    
+      alert('Status atualizado com sucesso!');
+      const id = Number(response.data.order_id)
+      localStorage.setItem('@foodexplorer:order', JSON.stringify({ id, status }));
+    })
+
   }
 
   const handleStatusChange = (index, newStatus) => {

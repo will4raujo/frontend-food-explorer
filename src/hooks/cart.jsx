@@ -5,7 +5,7 @@ export const CartContext = createContext({});
 export function CartProvider({ children }) {
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem('@foodexplorer:cart');
-    return storedCart ? JSON.parse(storedCart) : [];
+    return storedCart ? JSON.parse(storedCart) : { id: null, items: [] };
   });
 
   const notifyCartChange = () => {
@@ -15,24 +15,35 @@ export function CartProvider({ children }) {
 
   function addToCart({ dishId, quantity }) {
     setCart(prevCart => {
-      const itemIndex = prevCart.findIndex(item => item.dishId === dishId);
+      const { id, items } = prevCart;
+      const itemIndex = items.findIndex(item => item.dishId === dishId);
 
       if (quantity === 0) {
-        return prevCart.filter(item => item.dishId !== dishId);
+        return { id, items: items.filter(item => item.dishId !== dishId) };
       }
 
       if (itemIndex === -1) {
-        return [...prevCart, { dishId, quantity }];
+        return { id, items: [...items, { dishId, quantity }] };
       }
 
-      const newCart = [...prevCart];
-      newCart[itemIndex] = { dishId, quantity };
-      return newCart;
+      const newItems = [...items];
+      newItems[itemIndex] = { 
+        ...newItems[itemIndex],
+        quantity: newItems[itemIndex].quantity + quantity
+      };
+      return { id, items: newItems };
+    });
+  }
+
+  function removeFromCart(dishId) {
+    setCart(prevCart => {
+      const { id, items } = prevCart;
+      return { id, items: items.filter(item => item.dishId !== dishId) };
     });
   }
 
   function clearCart() {
-    setCart([]);
+    setCart({ id: null, items: [] });
     localStorage.removeItem('@foodexplorer:cart');
   }
 
@@ -42,7 +53,7 @@ export function CartProvider({ children }) {
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, clearCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

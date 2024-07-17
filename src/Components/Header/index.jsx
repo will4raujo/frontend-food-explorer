@@ -33,7 +33,7 @@ export function Header() {
   const updateTotal = () => {
     const storedCart = localStorage.getItem('@foodexplorer:cart');
     const parsedCart = storedCart ? JSON.parse(storedCart) : [];
-    const totalQuantity = `(${parsedCart.reduce((acc, item) => acc + item.quantity, 0)})`;
+    const totalQuantity = `(${parsedCart.items?.reduce((acc, item) => acc + item.quantity, 0)})`;
     setTotal(totalQuantity);
   };
 

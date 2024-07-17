@@ -11,6 +11,7 @@ import { useCart } from '../../hooks/cart';
 export function Card({ dishId, image, title, description, price, onClick, favorite = false }) {
   const [isFavorite, setIsFavorite] = useState(favorite);
   const [quantity, setQuantity] = useState(1);
+  const [clearQuantity, setClearQuantity] = useState(false);
   const { addToCart } = useCart();
 
   const handleQuantityChange = (newQuantity) => {
@@ -19,6 +20,7 @@ export function Card({ dishId, image, title, description, price, onClick, favori
 
   const handleSendToCart = () => {
     addToCart({dishId, quantity});
+    setClearQuantity(true);
   }
 
   const handleFavorite = () => {
@@ -55,7 +57,7 @@ export function Card({ dishId, image, title, description, price, onClick, favori
 
       {user.role === 'customer' && 
         <div className='action-buttons'>
-          <ButtonControl dishId={dishId} onQuantityChange={handleQuantityChange}/>
+          <ButtonControl dishId={dishId} onQuantityChange={handleQuantityChange} clearQuantity={clearQuantity} />
           <Button onClick={handleSendToCart}>Incluir</Button>
         </div>
       }

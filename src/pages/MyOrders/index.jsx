@@ -227,6 +227,8 @@ export function MyOrders() {
                     </div>
                   </Item>
                 ))}
+
+                {dishes.length === 0 && <p>Nenhum item no carrinho</p>}
               </div>
               <p>Total: R$ {total.toFixed(2)}</p>
               { !showPayments &&
@@ -234,7 +236,7 @@ export function MyOrders() {
               }
             </Orders>
           }
-          {showPayments && (
+          {showPayments && dishes.length > 0 && (
             <Payment $paymentmethod={paymentMethod}>
               <h1>Pagamento</h1>
               <div className="payment-container">

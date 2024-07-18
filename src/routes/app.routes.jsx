@@ -6,6 +6,7 @@ import { DishForm } from '../pages/DishForm';
 import { MyOrders } from '../pages/MyOrders';
 import { Orders } from '../pages/Orders';
 import { Favorites } from '../pages/Favorites';
+import { NotFound } from '../pages/404';
 
 export function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ export function AppRoutes() {
       <Route path="/my-orders" element={<MyOrders />} />
       <Route path="/orders" element={<Orders />} />
       <Route path="/favorites" element={<Favorites />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

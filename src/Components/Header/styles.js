@@ -57,7 +57,7 @@ export const Container = styled.header`
     display: none;
   }
 
-  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.XL}) {
     justify-content: center;
 
     .burger-menu, .search-container, .mobile-button-container{
@@ -66,6 +66,11 @@ export const Container = styled.header`
 
     .search-container, .desktop-button-container, .logout-icon {
       display: block;
+    }
+
+    .desktop-button-container {
+      display: flex;
+      gap: 3.2rem;
     }
 
     .desktop-button-container.last button {
@@ -78,11 +83,9 @@ export const Container = styled.header`
     }
   }
 
-  @media (min-width: ${DEVICE_BREAKPOINTS.XL}) {
     .search-container {
       width: 58rem;
     }
-  }
 `;
 
 export const BurgerMenu = styled.div`

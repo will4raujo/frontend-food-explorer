@@ -16,7 +16,7 @@ export function Menu({ isOpen, onClose }) {
   }
 
   return (
-    <Container isopen={isOpen.toString()}>
+    <Container isopen={isOpen.toString()} onclose={onClose.toString()}>
       <Header>
         <div onClick={onClose}>
           <img src={closeIcon} alt="Close" />
@@ -28,9 +28,8 @@ export function Menu({ isOpen, onClose }) {
         <Nav>
           <ul>
             {user.role === 'admin' && <li onClick={() => navigate('/dish')}>Novo prato</li>}
-            {user.role === 'customer' && <li>Histórico de pedidos</li>}
             {user.role === 'customer' && <li onClick={() => navigate('/favorites')}>Favoritos</li>}
-            {user.role === 'customer' && <li onClick={() => navigate('/orders')}>Histórico de pedidos</li>}
+            {user.role === 'customer' && <li>Histórico de pedidos</li>}
             <li onClick={handleLogout}>Sair</li>
           </ul> 
         </Nav>

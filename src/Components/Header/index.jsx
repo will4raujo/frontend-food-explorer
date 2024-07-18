@@ -74,7 +74,10 @@ export function Header() {
           <ButtonText onClick={() => navigate('/dish/edit/new')}>Novo prato</ButtonText>
         }
         {user.role === 'customer' &&
-          <ButtonText onClick={() => navigate('/favorites')}>Favoritos</ButtonText>
+          <>
+            <ButtonText onClick={() => navigate('/favorites')}>Meus Favoritos</ButtonText>
+            <ButtonText onClick={() => navigate('/orders')}>Histórico de pedidos</ButtonText>
+          </>
         }
       </div>
       <div className="desktop-button-container last">

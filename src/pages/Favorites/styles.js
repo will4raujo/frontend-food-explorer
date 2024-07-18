@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints';
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -43,7 +44,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
     > main {
       > div {
         grid-template-columns: repeat(2, 1fr);
@@ -51,7 +52,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
     > main {
       padding: 5.6rem 8.8rem 5.8rem 8.8rem;
 
@@ -61,7 +62,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.XXL}) {
     > main {
       padding: 5.6rem 12.8rem 5.8rem 12.8rem;
       

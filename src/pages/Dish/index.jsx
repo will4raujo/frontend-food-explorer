@@ -8,6 +8,7 @@ import { ButtonControl } from "../../Components/ButtonControl";
 import { Button } from "../../Components/Button";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
 import api from "../../services/api";
 
 export function Dish() {
@@ -15,6 +16,20 @@ export function Dish() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [dish, setDish] = useState();
+  const [quantity, setQuantity] = useState(1);
+  const [clearQuantity, setClearQuantity] = useState(false);
+  const { addToCart } = useCart();
+  
+
+  const handleQuantityChange = (newQuantity) => {
+    setQuantity(newQuantity);
+  };
+
+  const handleSendToCart = () => {
+    const dishId = Number(id);
+    addToCart({dishId, quantity});
+    setClearQuantity(true);
+  }
 
   useEffect(() => {
     api.get(`/dishes/${id}`).then(response => {
@@ -45,8 +60,8 @@ export function Dish() {
             ))}
           </div>
           {user.role === 'customer' && <div className="buttons-container">
-            <ButtonControl />
-            <Button>
+            <ButtonControl  onQuantityChange={handleQuantityChange} clearQuantity={clearQuantity}/>
+            <Button onClick={handleSendToCart}>
               {`incluir ∙ R$ ${dish?.price}`}
             </Button>
           </div>}

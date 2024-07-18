@@ -94,7 +94,7 @@ export function Header() {
       <div className="mobile-button-container">
         {user.role === 'customer' &&
           <>
-            <img src={orderIcon} alt="Notification" onClick={() => navigate('/my-orders')} />
+            <img src={orderIcon} alt="icone de pedidos" onClick={() => navigate('/my-orders')} />
             <div>{mobileTotal}</div>
           </>
         }

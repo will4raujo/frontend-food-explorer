@@ -27,9 +27,10 @@ export function Menu({ isOpen, onClose }) {
         <InputSearch />
         <Nav>
           <ul>
-            {user.role === 'admin' && <li onClick={() => navigate('/dish')}>Novo prato</li>}
+            {user.role === 'admin' && <li onClick={() => navigate('/dish/edit/new')}>Novo prato</li>}
+            {user.role === 'admin' && <li onClick={() => navigate('/orders')}>Pedidos</li>}
             {user.role === 'customer' && <li onClick={() => navigate('/favorites')}>Favoritos</li>}
-            {user.role === 'customer' && <li>Histórico de pedidos</li>}
+            {user.role === 'customer' && <li onClick={() => navigate('/orders')}>Histórico de pedidos</li>}
             <li onClick={handleLogout}>Sair</li>
           </ul> 
         </Nav>

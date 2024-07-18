@@ -39,7 +39,7 @@ export const Container = styled.div`
       height: 2.2rem;
        
       > path {
-        fill: ${({ theme, favorite }) => favorite === 'true' ? theme.COLORS.Light_300 : theme.COLORS.Dark_300};
+        fill: ${({ theme, $favorite }) => $favorite === 'true' ? theme.COLORS.Light_300 : theme.COLORS.Dark_300};
       }
     }
   }

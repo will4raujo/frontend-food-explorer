@@ -48,7 +48,7 @@ export function Card({ dishId, image, title, description, price, onClick, favori
   }
   
   return (
-    <Container favorite={isFavorite.toString()}>
+    <Container $favorite={isFavorite.toString()}>
       {user.role === 'customer' && <button className='fav-button' onClick={handleFavorite}>
         <FiHeart />
       </button>}

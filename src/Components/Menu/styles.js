@@ -82,6 +82,7 @@ export const Nav = styled.nav`
     &:hover {
       background-color: ${({ theme }) => theme.COLORS.Dark_1000};
       color: ${({ theme }) => theme.COLORS.Light_100};
+      border-radius: 0.8rem;
     }
   }
 `

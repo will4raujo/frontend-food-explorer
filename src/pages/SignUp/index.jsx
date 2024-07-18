@@ -44,9 +44,9 @@ export function SignUp() {
                 <Logo/>
                 <Form>
                     <h1 className="form-title">Cria sua conta</h1>
-                    <Input text={'Seu nome'} type={'text'} placeholder='Exemplo: Maria da Silva' onChange={(e) => setName(e.target.value)} required/>
-                    <Input text={'Email'} type={'email'} placeholder='Exemplo: exemplo@exemplo.com.br' onChange={(e) => setEmail(e.target.value)} required/>
-                    <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres' onChange={(e) => setPassword(e.target.value)} required/>
+                    <Input text={'Seu nome'} type={'text'} placeholder='Exemplo: Maria da Silva' onChange={(e) => setName(e.target.value)} required autocomplete='name'/>
+                    <Input text={'Email'} type={'email'} placeholder='Exemplo: exemplo@exemplo.com.br' onChange={(e) => setEmail(e.target.value)} required autocomplete='email'/>
+                    <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres' onChange={(e) => setPassword(e.target.value)} required autocomplete='new-password'/>
                     <Button title={"Criar conta"} onClick={handleSignUp}/>
                     <ButtonText onClick={() => navigate('/')} >Já tenho uma conta</ButtonText>
                 </Form>

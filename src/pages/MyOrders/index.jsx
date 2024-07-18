@@ -215,7 +215,7 @@ export function MyOrders() {
               <h1>Meu pedido</h1>
               <div>
                 {dishes.map((dish, index) => (
-                  <DishItem key={index} image={dish.image_url} name={dish.name} price={dish.price} quantity={dish.quantity} handleRemoveItem={() => handleRemoveItem(dish.id)} />
+                  <DishItem key={index} image={dish.image_url} name={dish.name} price={dish.price} quantity={dish.quantity} handleRemoveItem={() => handleRemoveItem(dish.id)} removeText={'Excluir'} />
                 ))}
 
                 {dishes.length === 0 && <p>Nenhum item no carrinho</p>}

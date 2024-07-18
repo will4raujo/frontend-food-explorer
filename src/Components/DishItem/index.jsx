@@ -1,6 +1,6 @@
 import { Container } from './styles';
 
-export function DishItem({ image, name, price, quantity, handleRemoveItem }) {
+export function DishItem({ image, name, price, quantity, handleRemoveItem, removeText }) {
   return (
     <Container>
         <div>
@@ -8,10 +8,11 @@ export function DishItem({ image, name, price, quantity, handleRemoveItem }) {
         </div>
         <div>
           <div>
-            <h2>{`${quantity} x ${name}`}</h2>
-            <span>R$ {price.toFixed(2).replace('.', ',')}</span>
+            {quantity && <h2>{`${quantity} x ${name}`}</h2>}
+            {!quantity && <h2>{name}</h2>}
+            {price && <span>R$ {price.toFixed(2).replace('.', ',')}</span>}
           </div>
-          <span onClick={handleRemoveItem}>Excluir</span>
+          <span onClick={handleRemoveItem}>{removeText}</span>
         </div>
     </Container>
   )

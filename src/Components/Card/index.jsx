@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 import { useCart } from '../../hooks/cart';
+import api from '../../services/api';
 
 export function Card({ dishId, image, title, description, price, onClick, favorite = false }) {
   const [isFavorite, setIsFavorite] = useState(favorite);
@@ -23,8 +24,14 @@ export function Card({ dishId, image, title, description, price, onClick, favori
     setClearQuantity(true);
   }
 
-  const handleFavorite = () => {
-    setIsFavorite(prev => !prev);
+  const handleFavorite = async () => {
+    if (isFavorite) {
+      await api.delete(`/favorites/${dishId}`);
+      setIsFavorite(false);
+    } else {
+      await api.post(`/favorites`, {dishId});
+      setIsFavorite(true);
+    }
   };
 
   useEffect(() => {

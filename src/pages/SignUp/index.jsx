@@ -44,7 +44,7 @@ export function SignUp() {
                     <Input text={'Email'} type={'email'} placeholder='Exemplo: exemplo@exemplo.com.br' onChange={(e) => setEmail(e.target.value)}/>
                     <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres' onChange={(e) => setPassword(e.target.value)}/>
                     <Button title={"Criar conta"} onClick={handleSignUp}/>
-                    <ButtonText to="/" >Já tenho uma conta</ButtonText>
+                    <ButtonText onClick={() => navigate('/')} >Já tenho uma conta</ButtonText>
                 </Form>
         </Container>
     )

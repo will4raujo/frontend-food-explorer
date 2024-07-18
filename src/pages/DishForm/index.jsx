@@ -32,6 +32,13 @@ export function DishForm() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const handleGoBack = () => {
+    const confirm = window.confirm('Deseja mesmo sair? Todas as alterações serão perdidas.');
+    if (confirm) {
+      navigate('/');
+    }
+  }
+
   const removeIngredient = (index) => {
     const newIngredients = ingredients.filter((_, i) => i !== index);
     setIngredients(newIngredients);
@@ -127,7 +134,7 @@ export function DishForm() {
     <Container>
       <Header />
       <main>
-        <ButtonText icon={PiCaretLeftLight} to='/'>voltar</ButtonText>
+        <ButtonText icon={PiCaretLeftLight} onClick={handleGoBack}>voltar</ButtonText>
         <h1>Novo prato</h1>
         <form>
           <div className="col-3">

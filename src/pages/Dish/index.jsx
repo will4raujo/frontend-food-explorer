@@ -10,6 +10,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart";
 import api from "../../services/api";
+import toastr from 'toastr'
 
 export function Dish() {
   const { id } = useParams();
@@ -19,7 +20,6 @@ export function Dish() {
   const [quantity, setQuantity] = useState(1);
   const [clearQuantity, setClearQuantity] = useState(false);
   const { addToCart } = useCart();
-  
 
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
@@ -29,6 +29,7 @@ export function Dish() {
     const dishId = Number(id);
     addToCart({dishId, quantity});
     setClearQuantity(true);
+    toastr.success('Prato adicionado ao carrinho')
   }
 
   useEffect(() => {
@@ -46,7 +47,7 @@ export function Dish() {
       <Header />
       <main>
         <div className="col-1">
-          <ButtonText icon={PiCaretLeftLight} to="/">
+          <ButtonText icon={PiCaretLeftLight} onClick={() => navigate('/')}>
             voltar
           </ButtonText>
           <img src={dish?.image_url} alt={dish?.name} />

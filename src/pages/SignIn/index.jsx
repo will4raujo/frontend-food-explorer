@@ -6,6 +6,7 @@ import { ButtonText } from "../../Components/ButtonText";
 import { useState } from "react";
 import { useAuth } from '../../hooks/auth';
 import toastr from 'toastr';
+import { navigate } from 'react-router-dom';
 
 
 export function SignIn() {
@@ -13,7 +14,7 @@ export function SignIn() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { signIn } = useAuth()
-
+    const navigate = useNavigate()
 
     const handleSignIn = async (e) => {
         e.preventDefault()
@@ -33,7 +34,7 @@ export function SignIn() {
                     <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres' onChange={(e) => setPassword(e.target.value)}/>
                     <Button title={"Entrar"} onClick={handleSignIn}/>
 
-                    <ButtonText to="/register" >Criar conta</ButtonText>
+                    <ButtonText onClick={() => navigate('/register')} >Criar conta</ButtonText>
                 </Form>
         </Container>
     )

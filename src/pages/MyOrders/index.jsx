@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Header } from "../../Components/Header";
-import { Container, Item, Payment, Orders } from "./styles";
+import { Container, Payment, Orders } from "./styles";
 import { Footer } from "../../Components/Footer";
 import { Button } from "../../Components/Button";
 import { Input } from "../../Components/Input";
@@ -13,7 +13,6 @@ import clock from "../../assets/icons/clock.svg";
 import circleCheck from "../../assets/icons/circle-check.svg";
 import forkKnife from "../../assets/icons/fork-knife.svg";
 import { useCart } from "../../hooks/cart";
-import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 
 export function MyOrders() {
@@ -32,8 +31,6 @@ export function MyOrders() {
   });
   
   const [orderHasStarted, setOrderHasStarted] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleShowPayments = (e) => {
     e.preventDefault();
@@ -67,9 +64,9 @@ export function MyOrders() {
     const confirm = window.confirm('Deseja realmente remover este item do carrinho?');
     if (confirm){ 
       removeFromCart(dishId)
+      toastr.success('Item removido do carrinho')
       if (cart.items.length === 0) {
         setShowOrder(false);
-        navigate('/')
       }
     }
   };

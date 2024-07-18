@@ -11,6 +11,7 @@ export function Slider({category}) {
 
   useEffect(() => {
     api.get(`/dishes/category?c=${category.value}`).then(response => {
+      console.log(response.data);
       setDishes(response.data.map(dish => {
         return {
           ...dish,
@@ -78,6 +79,7 @@ export function Slider({category}) {
                 title={dish.name}
                 description={dish.description}
                 price={dish.price}
+                favorite={dish.isFavorite}
               />
             </SplideSlide>
           ))}

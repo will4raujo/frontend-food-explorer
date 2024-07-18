@@ -2,12 +2,12 @@ import { Container } from "./styles";
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
 
-export function ButtonControl() {
-  const [quantity, setQuantity] = useState(1);
+export function ButtonControl({ onQuantityChange, clearQuantity }) {
+  const [quantity, setQuantity] = useState(0);
   const [displayQuantity, setDisplayQuantity] = useState(`0${quantity}`);
-  
+
   const handleMinus = () => {
-    setQuantity(prev => Math.max(prev - 1, 1));
+    setQuantity(prev => Math.max(prev - 1, 0));
   };
 
   const handlePlus = () => {
@@ -20,7 +20,16 @@ export function ButtonControl() {
     } else {
       setDisplayQuantity(quantity.toString());
     }
-  }, [quantity]);
+    
+    onQuantityChange(quantity);
+  }, [quantity, onQuantityChange]);
+
+  useEffect(() => {
+    if (clearQuantity) {
+      setQuantity(0);
+      clearQuantity = false;
+    }
+  }, [clearQuantity]);
 
   return (
     <Container>

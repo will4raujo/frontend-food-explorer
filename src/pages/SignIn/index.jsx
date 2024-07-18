@@ -30,8 +30,8 @@ export function SignIn() {
                 <Logo/>
                 <Form>
                     <h1 className="form-title">Faça login</h1>
-                    <Input text={'Email'} type={'email'} placeholder='Exemplo: exemplo@exemplo.com.br' onChange={(e) => setEmail(e.target.value)}/>
-                    <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres' onChange={(e) => setPassword(e.target.value)}/>
+                    <Input text={'Email'} type={'email'} placeholder='Exemplo: exemplo@exemplo.com.br' onChange={(e) => setEmail(e.target.value)} required/>
+                    <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres' onChange={(e) => setPassword(e.target.value)} required/>
                     <Button title={"Entrar"} onClick={handleSignIn}/>
 
                     <ButtonText onClick={() => navigate('/register')} >Criar conta</ButtonText>

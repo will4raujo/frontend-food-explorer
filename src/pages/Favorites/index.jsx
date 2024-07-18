@@ -18,7 +18,6 @@ export function Favorites() {
   useEffect(() => {
     async function getFavorites() {
       const response = await api.get('/favorites');
-      console.log(response.data);
       setDishes(response.data.map(dish => {
         return {
           ...dish,

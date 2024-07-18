@@ -78,14 +78,12 @@ export function MyOrders() {
 
     const consultOrderStatus = () => {
       if (orderId !== null) {
-        console.log('Consultando status do pedido');
-        console.log('Order ID:', orderId);
         api.get(`/orders/${orderId}`)
           .then(response => {
             setStatus(response.data);
           })
           .catch(error => {
-            console.log(error);
+            console.warn(error);
           });
       } else {
         alert('Pedido não encontrado');
@@ -97,8 +95,6 @@ export function MyOrders() {
     }
 
     if (orderHasStarted && orderId !== null && status !== 'finished') {
-      console.log('Iniciando consulta de status');
-      console.log('Status atual:', status);
       intervalId = setInterval(() => {
         consultOrderStatus();
       }, 1000);

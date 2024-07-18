@@ -18,7 +18,7 @@ export const Container = styled.div`
     'header'
     'Content'
     'footer';
-  animation: slideIn 1s ease-in-out;
+  animation: slideIn .3s ease-in-out;
 
   @keyframes slideIn {
     from {
@@ -76,5 +76,12 @@ export const Nav = styled.nav`
 
     list-style: none;
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.COLORS.Dark_1000};
+      color: ${({ theme }) => theme.COLORS.Light_100};
+    }
   }
 `

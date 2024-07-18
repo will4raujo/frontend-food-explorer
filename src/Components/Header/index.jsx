@@ -16,6 +16,7 @@ export function Header() {
   const { signOut } = useAuth();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [total, setTotal] = useState('');
+  const [mobileTotal, setMobileTotal] = useState(0);
 
   const handleMenu = () => {
     setMenuIsOpen(!menuIsOpen);
@@ -34,13 +35,15 @@ export function Header() {
     const storedCart = localStorage.getItem('@foodexplorer:cart');
     const parsedCart = storedCart ? JSON.parse(storedCart) : [];
     const totalQuantity = `(${parsedCart.items?.reduce((acc, item) => acc + item.quantity, 0)})`;
+    const mobileTotalQuantity = parsedCart.items?.reduce((acc, item) => acc + item.quantity, 0);
     setTotal(totalQuantity);
+    setMobileTotal(mobileTotalQuantity);
   };
 
   useEffect(() => {
     updateTotal();
 
-    const handleCartUpdated = (event) => {
+    const handleCartUpdated = () => {
       updateTotal();
     };
 
@@ -66,13 +69,15 @@ export function Header() {
       <div className="search-container">
         <InputSearch />
       </div>
-      {user.role === 'admin' &&
-        <ButtonText onClick={() => navigate('/dish/edit/new')}>Novo prato</ButtonText>
-      }
-      {user.role === 'customer' &&
-        <ButtonText onClick={() => navigate('/favorites')}>Favoritos</ButtonText>
-      }
       <div className="desktop-button-container">
+        {user.role === 'admin' &&
+          <ButtonText onClick={() => navigate('/dish/edit/new')}>Novo prato</ButtonText>
+        }
+        {user.role === 'customer' &&
+          <ButtonText onClick={() => navigate('/favorites')}>Favoritos</ButtonText>
+        }
+      </div>
+      <div className="desktop-button-container last">
         {user.role === 'customer' &&
           <Button title={`Pedidos ${total}`} onClick={() => navigate('/my-orders')}>
             <img src={orderIcon} alt="Notification" />
@@ -85,7 +90,10 @@ export function Header() {
 
       <div className="mobile-button-container">
         {user.role === 'customer' &&
-          <img src={orderIcon} alt="Notification" onClick={() => navigate('/my-orders')} />
+          <>
+            <img src={orderIcon} alt="Notification" onClick={() => navigate('/my-orders')} />
+            <div>{mobileTotal}</div>
+          </>
         }
       </div>
 

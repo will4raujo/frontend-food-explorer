@@ -69,6 +69,9 @@ export function Header() {
       {user.role === 'admin' &&
         <ButtonText onClick={() => navigate('/dish/edit/new')}>Novo prato</ButtonText>
       }
+      {user.role === 'customer' &&
+        <ButtonText onClick={() => navigate('/favorites')}>Favoritos</ButtonText>
+      }
       <div className="desktop-button-container">
         {user.role === 'customer' &&
           <Button title={`Pedidos ${total}`} onClick={() => navigate('/my-orders')}>

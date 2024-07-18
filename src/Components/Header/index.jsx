@@ -75,7 +75,7 @@ export function Header() {
         }
         {user.role === 'customer' &&
           <>
-            <ButtonText onClick={() => navigate('/favorites')}>Meus Favoritos</ButtonText>
+            <ButtonText onClick={() => navigate('/favorites')}>Meus favoritos</ButtonText>
             <ButtonText onClick={() => navigate('/orders')}>Histórico de pedidos</ButtonText>
           </>
         }

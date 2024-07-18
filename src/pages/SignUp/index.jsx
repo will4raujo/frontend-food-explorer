@@ -6,6 +6,7 @@ import { ButtonText } from "../../Components/ButtonText";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import toastr from 'toastr';
 
 export function SignUp() {
     const [name, setName] = useState('')
@@ -17,19 +18,19 @@ export function SignUp() {
         e.preventDefault()
 
         if (!name || !email || !password) {
-            return alert('Preencha todos os campos')
+            return toastr.error('Preencha todos os campos')
         }
 
         api.post('/users', { name, email, password })
         .then(() => {
-            alert('Usuário criado com sucesso')
+            toastr.success('Usuário criado com sucesso')
             navigate('/')
         })
         .catch((error) => {
             if (error.response) {
-                alert(error.response.data.message)
+                toastr.error(error.response.data.message)
             } else {
-                alert('Erro ao criar usuário')
+                toastr.error('Erro ao criar usuário')
             }
         })
     }

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-
+import toastr from 'toastr';
 import api from '../services/api';
 
 export const AuthContext = createContext({});
@@ -20,9 +20,9 @@ function AuthProvider({ children }) {
             
         } catch (error) {
             if ( error.response){
-                alert(error.response.data.message);
+                toastr.error(error.response.data.message);
             }else {
-                alert("Não foi possível entrar.");
+                toastr.error("Não foi possível entrar.");
             }
         }
     }

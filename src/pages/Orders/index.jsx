@@ -5,6 +5,7 @@ import { Footer } from '../../components/Footer';
 import { Select } from '../../components/Select';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
+import toastr from 'toastr';
 
 export function Orders() {
   const [orders, setOrders] = useState([]);
@@ -19,7 +20,7 @@ export function Orders() {
 
   const updateOrderStatus = (orderId, status) => {
     api.put(`/orders/${orderId}`, { status }).then(response => {
-      alert('Status atualizado com sucesso!');
+      toastr.success('Status atualizado com sucesso!');
       const id = Number(response.data.order_id)
       localStorage.setItem('@foodexplorer:order', JSON.stringify({ id, status }));
     })

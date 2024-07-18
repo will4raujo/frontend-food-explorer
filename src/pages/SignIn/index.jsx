@@ -5,6 +5,7 @@ import { Logo } from "../../Components/Logo";
 import { ButtonText } from "../../Components/ButtonText";
 import { useState } from "react";
 import { useAuth } from '../../hooks/auth';
+import toastr from 'toastr';
 
 
 export function SignIn() {
@@ -17,7 +18,7 @@ export function SignIn() {
     const handleSignIn = async (e) => {
         e.preventDefault()
         if (!email || !password) {
-            return alert('Preencha todos os campos')
+            return toastr.error('Preencha todos os campos')
         }
 
         signIn({ email, password })

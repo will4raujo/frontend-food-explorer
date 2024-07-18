@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 import { useCart } from '../../hooks/cart';
 import api from '../../services/api';
+import toastr from 'toastr';
 
 export function Card({ dishId, image, title, description, price, onClick, favorite = false }) {
   const [isFavorite, setIsFavorite] = useState(favorite);
@@ -22,6 +23,7 @@ export function Card({ dishId, image, title, description, price, onClick, favori
   const handleSendToCart = () => {
     addToCart({dishId, quantity});
     setClearQuantity(true);
+    toastr.success('Item adicionado ao carrinho');
   }
 
   const handleFavorite = async () => {

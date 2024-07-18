@@ -14,6 +14,7 @@ import circleCheck from "../../assets/icons/circle-check.svg";
 import forkKnife from "../../assets/icons/fork-knife.svg";
 import { useCart } from "../../hooks/cart";
 import { useNavigate } from "react-router-dom";
+import toastr from "toastr";
 
 export function MyOrders() {
   const [showOrder, setShowOrder] = useState(true);
@@ -53,12 +54,12 @@ export function MyOrders() {
       total,
       payment_method: paymentMethod,
     }).then(response => {
-      alert(response.data.message);
+      toastr.success(response.data.message);
       localStorage.setItem('@foodexplorer:cart', JSON.stringify({ id: response.data.id, items: cart.items }));
       setOrderId(response.data.id);
       setOrderHasStarted(true);
     }).catch(error => {
-      alert(error);
+      toastr.error(error);
     });
   };
 
@@ -86,7 +87,7 @@ export function MyOrders() {
             console.warn(error);
           });
       } else {
-        alert('Pedido não encontrado');
+        toastr.error('Pedido não encontrado');
       }
     };
 

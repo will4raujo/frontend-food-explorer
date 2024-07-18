@@ -10,6 +10,7 @@ import { TextArea } from "../../Components/TextArea";
 import { PiCaretLeftLight, PiUploadSimple } from "react-icons/pi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import toastr from 'toastr';
 import api from "../../services/api";
 
 export function DishForm() {
@@ -77,7 +78,7 @@ export function DishForm() {
                   'Content-Type': 'multipart/form-data'
               }
           });
-          alert("Prato cadastrado com sucesso!");
+          toastr.success("Prato cadastrado com sucesso!");
           navigate('/');
 
       } else {
@@ -86,7 +87,7 @@ export function DishForm() {
                   'Content-Type': 'multipart/form-data'
               }
           });
-          alert("Prato atualizado com sucesso!");
+          toastr.success("Prato atualizado com sucesso!");
           navigate('/');
       }
   } catch (error) {
@@ -100,7 +101,7 @@ export function DishForm() {
     if (confirm) {
       try {
         await api.delete(`/dishes/${id}`);
-        alert("Prato excluído com sucesso!");
+        toastr.success("Prato excluído com sucesso!");
         navigate('/');
       } catch (error) {
         console.error(error);

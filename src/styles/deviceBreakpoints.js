@@ -5,12 +5,3 @@ export const DEVICE_BREAKPOINTS = {
   XL: '1280px',
   XXL: '1440px',
 };
-
-//signin ok
-//signup ok
-//home ok
-//myorders ok
-//favorites ok
-//dish ok
-//dishform ok
-//orders ok

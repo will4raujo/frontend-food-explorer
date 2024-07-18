@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.header`
   width: 100vw;
@@ -27,7 +27,7 @@ export const Container = styled.header`
     display: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
     justify-content: center;
 
     .burger-menu, .search-container, .mobile-button-container{
@@ -47,7 +47,7 @@ export const Container = styled.header`
     }
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${DEVICE_BREAKPOINTS.XL}) {
     .search-container {
       width: 58rem;
     }

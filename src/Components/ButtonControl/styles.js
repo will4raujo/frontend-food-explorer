@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
   width: 10rem;
@@ -26,7 +27,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
     .control-container {
       gap: 1.4rem;
 

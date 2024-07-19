@@ -18,7 +18,7 @@ export function Slider({category}) {
           return {
             ...dish,
             price: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(dish.price),
-            image_url: ` ${api.defaults.baseURL}/files/${dish.image_url}`
+            image_url: `${api.defaults.baseURL}/files/${dish.image_url}`
           }
         }));
       })

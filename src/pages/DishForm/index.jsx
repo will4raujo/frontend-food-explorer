@@ -70,7 +70,7 @@ export function DishForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", category);
@@ -80,6 +80,9 @@ export function DishForm() {
     
     if (imageFile) {
         formData.append("image", imageFile);
+    } else {
+        toastr.error("Selecione uma imagem para o prato");
+        return;
     }
     try {
       setLoading(true);

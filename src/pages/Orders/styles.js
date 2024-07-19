@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -91,9 +91,9 @@ export const Tr = styled.tr`
       height: 8px;
       border-radius: 50%;
       background-color: ${({ theme, $semaphore }) => {
-    if ($semaphore === 'pending') return theme.COLORS.Tomato_300;
-    if ($semaphore === 'preparing') return theme.COLORS.Carrot_100;
-    if ($semaphore === 'finished') return theme.COLORS.Mint_100;
+    if ($semaphore === 'pending') return theme.COLORS.Tomato_300
+    if ($semaphore === 'preparing') return theme.COLORS.Carrot_100
+    if ($semaphore === 'finished') return theme.COLORS.Mint_100
   }};
       z-index: 10;
     }
@@ -151,9 +151,9 @@ export const Card = styled.div`
         height: 8px;
         border-radius: 50%;
         background-color: ${({ theme, $semaphore }) => {
-    if ($semaphore === 'pending') return theme.COLORS.Tomato_300;
-    if ($semaphore === 'preparing') return theme.COLORS.Carrot_100;
-    if ($semaphore === 'finished') return theme.COLORS.Mint_100;
+    if ($semaphore === 'pending') return theme.COLORS.Tomato_300
+    if ($semaphore === 'preparing') return theme.COLORS.Carrot_100
+    if ($semaphore === 'finished') return theme.COLORS.Mint_100
   }};
         z-index: 10;
       }

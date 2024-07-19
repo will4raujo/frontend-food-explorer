@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints';
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   margin: 0px 0px 4.8rem 0px;
@@ -89,4 +89,4 @@ export const Container = styled.div`
      font-size: 3.2rem;
     }
   }
-`;
+`

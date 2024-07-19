@@ -1,12 +1,12 @@
-import { Container, Form } from "./styles";
-import { Button } from "../../Components/Button";
-import { Input } from "../../Components/Input";
-import { Logo } from "../../Components/Logo";
-import { ButtonText } from "../../Components/ButtonText";
-import { useState } from "react";
-import { useAuth } from '../../hooks/auth';
-import toastr from 'toastr';
-import { useNavigate } from 'react-router-dom';
+import { Container, Form } from './styles'
+import { Button } from '../../Components/Button'
+import { Input } from '../../Components/Input'
+import { Logo } from '../../Components/Logo'
+import { ButtonText } from '../../Components/ButtonText'
+import { useState } from 'react'
+import { useAuth } from '../../hooks/auth'
+import toastr from 'toastr'
+import { useNavigate } from 'react-router-dom'
 
 
 export function SignIn() {
@@ -33,10 +33,10 @@ export function SignIn() {
         <Container>
                 <Logo/>
                 <Form>
-                    <h1 className="form-title">Faça login</h1>
+                    <h1 className='form-title'>Faça login</h1>
                     <Input text={'Email'} type={'email'} placeholder='Exemplo: exemplo@exemplo.com.br' onChange={(e) => setEmail(e.target.value)} required autocomplete='email'/>
                     <Input text={'Senha'} type={'password'} placeholder='No mínimo 6 caracteres' onChange={(e) => setPassword(e.target.value)} required autocomplete='current-password'/>
-                    <Button title={"Entrar"} onClick={handleSignIn} loading={loading}/>
+                    <Button title={'Entrar'} onClick={handleSignIn} loading={loading}/>
 
                     <ButtonText onClick={() => navigate('/register')} >Criar conta</ButtonText>
                 </Form>

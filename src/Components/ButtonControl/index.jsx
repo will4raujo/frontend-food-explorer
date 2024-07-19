@@ -1,35 +1,35 @@
-import { Container } from "./styles";
-import { FiMinus, FiPlus } from 'react-icons/fi';
-import { useState, useEffect } from 'react';
+import { Container } from './styles'
+import { FiMinus, FiPlus } from 'react-icons/fi'
+import { useState, useEffect } from 'react'
 
 export function ButtonControl({ onQuantityChange, clearQuantity }) {
-  const [quantity, setQuantity] = useState(0);
-  const [displayQuantity, setDisplayQuantity] = useState(`0${quantity}`);
+  const [quantity, setQuantity] = useState(0)
+  const [displayQuantity, setDisplayQuantity] = useState(`0${quantity}`)
 
   const handleMinus = () => {
-    setQuantity(prev => Math.max(prev - 1, 0));
-  };
+    setQuantity(prev => Math.max(prev - 1, 0))
+  }
 
   const handlePlus = () => {
-    setQuantity(prev => prev + 1);
-  };
+    setQuantity(prev => prev + 1)
+  }
 
   useEffect(() => {
     if (quantity < 10) {
-      setDisplayQuantity(`0${quantity}`);
+      setDisplayQuantity(`0${quantity}`)
     } else {
-      setDisplayQuantity(quantity.toString());
+      setDisplayQuantity(quantity.toString())
     }
     
-    onQuantityChange(quantity);
-  }, [quantity, onQuantityChange]);
+    onQuantityChange(quantity)
+  }, [quantity, onQuantityChange])
 
   useEffect(() => {
     if (clearQuantity) {
-      setQuantity(0);
-      clearQuantity = false;
+      setQuantity(0)
+      clearQuantity = false
     }
-  }, [clearQuantity]);
+  }, [clearQuantity])
 
   return (
     <Container>
@@ -43,5 +43,5 @@ export function ButtonControl({ onQuantityChange, clearQuantity }) {
           </button>
         </div>
     </Container>
-  );
+  )
 }

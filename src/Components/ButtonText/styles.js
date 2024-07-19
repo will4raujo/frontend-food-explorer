@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.button`
   display: flex;
@@ -24,4 +24,4 @@ export const Container = styled.button`
   &:hover {
     color: ${({ theme }) => theme.COLORS.Light_100};
   }
-`;
+`

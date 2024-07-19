@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.header`
   width: 100vw;
@@ -86,7 +86,7 @@ export const Container = styled.header`
     .search-container {
       width: 58rem;
     }
-`;
+`
 
 export const BurgerMenu = styled.div`
   display: flex;
@@ -129,7 +129,7 @@ export const BurgerMenu = styled.div`
       width: 100%;
     }
   }
-`;
+`
 
 export const LogOut = styled.button`
 

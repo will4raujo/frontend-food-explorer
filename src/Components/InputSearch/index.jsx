@@ -1,34 +1,34 @@
-import { Container, SearchResults } from './styles';
-import { FiSearch } from 'react-icons/fi';
-import { useState, useEffect } from 'react';
-import api from '../../services/api';
-import { useNavigate } from 'react-router-dom';
+import { Container, SearchResults } from './styles'
+import { FiSearch } from 'react-icons/fi'
+import { useState, useEffect } from 'react'
+import api from '../../services/api'
+import { useNavigate } from 'react-router-dom'
 
 export function InputSearch() {
-  const [search, setSearch] = useState('');
-  const [results, setResults] = useState([]);
-  const navigate = useNavigate();
+  const [search, setSearch] = useState('')
+  const [results, setResults] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (search === '') {
       api.get(`/dishes`).then(response => {
-        setResults(response.data);
-      });
+        setResults(response.data)
+      })
     }
 
     if (search.length > 3) {
       api.get(`/dishes/search?q=${search}`).then(response => {
-        setResults(response.data);
-      });
+        setResults(response.data)
+      })
     }
-  }, [search]);
+  }, [search])
 
   return (
     <Container>
       <FiSearch />
       <input 
-        type="text" 
-        placeholder="Busque por pratos ou ingredientes" 
+        type='text' 
+        placeholder='Busque por pratos ou ingredientes' 
         value={search} 
         onChange={(e) => setSearch(e.target.value)} 
       />
@@ -42,5 +42,5 @@ export function InputSearch() {
         </SearchResults>
       )}
     </Container>
-  );
+  )
 }

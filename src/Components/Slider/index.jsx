@@ -1,28 +1,28 @@
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css/skyblue";
-import { Card } from "../Card";
-import { Container } from "./styles";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../../services/api";
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
+import '@splidejs/react-splide/css/skyblue'
+import { Card } from '../Card'
+import { Container } from './styles'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import api from '../../services/api'
 import { Loading } from '../Loading'
 
 export function Slider({category}) { 
-  const [dishes, setDishes] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [dishes, setDishes] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
       api.get(`/dishes/category?c=${category.value}`).then(response => {
         setDishes(response.data.map(dish => {
-          setLoading(false);
+          setLoading(false)
           return {
             ...dish,
             price: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(dish.price),
             image_url: `${api.defaults.baseURL}/files/${dish.image_url}`
           }
-        }));
+        }))
       })
-  }, []);
+  }, [])
 
   const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ export function Slider({category}) {
     fixedWidth: 230,
     pagination: false,
     perPage: 3,
-  };
+  }
 
   const optionsDesktop = {
     rewind: true,
@@ -41,27 +41,27 @@ export function Slider({category}) {
     pagination: false,
     fixedWidth: 330,
     perPage: 3,
-  };
+  }
 
   const [options, setOptions] = useState(() => {
-    return window.innerWidth > 768 ? optionsDesktop : optionsMobile;
-  });
+    return window.innerWidth > 768 ? optionsDesktop : optionsMobile
+  })
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
-        setOptions(optionsDesktop);
+        setOptions(optionsDesktop)
       } else {
-        setOptions(optionsMobile);
+        setOptions(optionsMobile)
       }
-    };
+    }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   return (
     <Container $loading={loading}>
@@ -90,5 +90,5 @@ export function Slider({category}) {
       </>
       )}
     </Container>
-  );
+  )
 }

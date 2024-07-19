@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Card, Table, Tr } from './styles';
-import { Header } from '../../Components/Header';
-import { Footer } from '../../Components/Footer';
-import { Select } from '../../Components/Select';
-import { Loading } from '../../Components/Loading';
-import api from '../../services/api';
-import { useAuth } from '../../hooks/auth';
-import toastr from 'toastr';
+import { useEffect, useState } from 'react'
+import { Container, Card, Table, Tr } from './styles'
+import { Header } from '../../Components/Header'
+import { Footer } from '../../Components/Footer'
+import { Select } from '../../Components/Select'
+import { Loading } from '../../Components/Loading'
+import api from '../../services/api'
+import { useAuth } from '../../hooks/auth'
+import toastr from 'toastr'
 
 export function Orders() {
-  const [orders, setOrders] = useState([]);
-  const [isMobile, setIsMobile] = useState(true);
-  const [loading, setLoading] = useState(true);
-  const { user } = useAuth();
+  const [orders, setOrders] = useState([])
+  const [isMobile, setIsMobile] = useState(true)
+  const [loading, setLoading] = useState(true)
+  const { user } = useAuth()
 
   const options = [
     { value: 'pending', label: 'Pendente' },
@@ -22,17 +22,17 @@ export function Orders() {
 
   const updateOrderStatus = (orderId, status) => {
     api.put(`/orders/${orderId}`, { status }).then(response => {
-      toastr.success('Status atualizado com sucesso!');
+      toastr.success('Status atualizado com sucesso!')
       const id = Number(response.data.order_id)
-      localStorage.setItem('@foodexplorer:order', JSON.stringify({ id, status }));
+      localStorage.setItem('@foodexplorer:order', JSON.stringify({ id, status }))
     })
   }
 
   const handleStatusChange = (index, newStatus) => {
-    const updatedOrders = [...orders];
-    updatedOrders[index].status = newStatus;
-    setOrders(updatedOrders);
-    updateOrderStatus(updatedOrders[index].id, newStatus);
+    const updatedOrders = [...orders]
+    updatedOrders[index].status = newStatus
+    setOrders(updatedOrders)
+    updateOrderStatus(updatedOrders[index].id, newStatus)
   }
 
   useEffect(() => {
@@ -43,27 +43,27 @@ export function Orders() {
             timeZone: 'UTC',
             dateStyle: 'short',
             timeStyle: 'short'
-          }).replace(/\/\d{4}/, '').replace(/:/g, 'h').replace(',', ' às');
-          order.id = order.id.toString().padStart(6, '0');
-          return order;
-        });
-        setOrders(formattedOrders);
-        setLoading(false);
+          }).replace(/\/\d{4}/, '').replace(/:/g, 'h').replace(',', ' às')
+          order.id = order.id.toString().padStart(6, '0')
+          return order
+        })
+        setOrders(formattedOrders)
+        setLoading(false)
       })
-      .catch(error => console.error(error));
-  }, []);
+      .catch(error => console.error(error))
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 768)
     }
-    window.addEventListener('resize', handleResize);
-    handleResize();
+    window.addEventListener('resize', handleResize)
+    handleResize()
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResize)
     }
-  }, []);
+  }, [])
 
   return (
     <Container>
@@ -149,8 +149,8 @@ export function Orders() {
                       </div>
                       <p>{order.detailing}</p>
                       {user.role === 'admin' && <Select
-                        name="status"
-                        title=""
+                        name='status'
+                        title=''
                         value={order.status}
                         setValue={(value) => handleStatusChange(index, value)}
                         options={options}
@@ -178,8 +178,8 @@ export function Orders() {
                           <Tr key={index}>
                             <td>
                               <Select
-                                name="status"
-                                title=""
+                                name='status'
+                                title=''
                                 value={order.status}
                                 setValue={(value) => handleStatusChange(index, value)}
                                 options={options}
@@ -206,5 +206,5 @@ export function Orders() {
       </main>
       <Footer />
     </Container>
-  );
+  )
 }

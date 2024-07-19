@@ -1,4 +1,4 @@
-import { Container, H2, Content } from './styles';
+import { Container, H2, Content } from './styles'
 
 export function Section({ title , children }) {
   return (
@@ -9,5 +9,5 @@ export function Section({ title , children }) {
       </Content>
     </Container>
     
-  );
+  )
 }

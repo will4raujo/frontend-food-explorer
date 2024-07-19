@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   display: flex;
@@ -50,4 +50,4 @@ export const Container = styled.div`
       }
     }
   }
-`;
+`

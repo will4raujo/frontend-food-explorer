@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactLoading from 'react-loading';
+import ReactLoading from 'react-loading'
 
 export function Loading({height, width}) {
   return (

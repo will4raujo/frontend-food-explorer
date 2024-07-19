@@ -1,35 +1,35 @@
-import { useEffect, useState } from "react";
-import { Header } from "../../Components/Header";
-import { Container } from "./styles";
-import { Footer } from "../../Components/Footer";
-import { DishItem } from "../../Components/DishItem";
-import api from "../../services/api";
-import { Loading } from "../../Components/Loading";
+import { useEffect, useState } from 'react'
+import { Header } from '../../Components/Header'
+import { Container } from './styles'
+import { Footer } from '../../Components/Footer'
+import { DishItem } from '../../Components/DishItem'
+import api from '../../services/api'
+import { Loading } from '../../Components/Loading'
 
 export function Favorites() {
 
-  const [dishes, setDishes] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [dishes, setDishes] = useState([])
+  const [loading, setLoading] = useState(true)
 
   async function handleRemoveItem(id) {
-    await api.delete(`/favorites/${id}`);
-    setDishes(dishes.filter(dish => dish.id !== id));
+    await api.delete(`/favorites/${id}`)
+    setDishes(dishes.filter(dish => dish.id !== id))
   }
 
   useEffect(() => {
     async function getFavorites() {
-      const response = await api.get('/favorites');
+      const response = await api.get('/favorites')
       setDishes(response.data.map(dish => {
-        setLoading(false);
+        setLoading(false)
         return {
           ...dish,
           image_url: `${api.defaults.baseURL}/files/${dish.image_url}`
         }
-      }));
+      }))
     }
 
-    getFavorites();
-  }, []);
+    getFavorites()
+  }, [])
 
   return (
     <div>
@@ -47,5 +47,5 @@ export function Favorites() {
         <Footer />
       </Container>
     </div>
-  );
+  )
 }

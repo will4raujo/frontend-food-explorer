@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import 'toastr/build/toastr.min.css';
+import { createGlobalStyle } from 'styled-components'
+import 'toastr/build/toastr.min.css'
 
 export default createGlobalStyle`
  * {

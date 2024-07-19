@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container } from './styles'
 
 export function ButtonText({ icon : Icon, children, ...rest }) {
   return (
@@ -6,5 +6,5 @@ export function ButtonText({ icon : Icon, children, ...rest }) {
       {Icon && <Icon />}
       {children}
     </Container>
-  );
+  )
 }

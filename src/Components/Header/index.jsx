@@ -82,7 +82,7 @@ export function Header() {
       </div>
       <div className='desktop-button-container last'>
         {user.role === 'customer' &&
-          <Button title={`Pedidos ${total}`} onClick={() => navigate('/my-orders')}>
+          <Button title={`Pedidos ${total}`} onClick={() => navigate('/my-order')}>
             <img src={orderIcon} alt='Notification' />
           </Button>
         }
@@ -94,7 +94,7 @@ export function Header() {
       <div className='mobile-button-container'>
         {user.role === 'customer' &&
           <>
-            <img src={orderIcon} alt='icone de pedidos' onClick={() => navigate('/my-orders')} />
+            <img src={orderIcon} alt='icone de pedidos' onClick={() => navigate('/my-order')} />
             <div>{mobileTotal}</div>
           </>
         }

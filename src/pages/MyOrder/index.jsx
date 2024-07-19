@@ -16,7 +16,7 @@ import forkKnife from '../../assets/icons/fork-knife.svg'
 import { useCart } from '../../hooks/cart'
 import toastr from 'toastr'
 
-export function MyOrders() {
+export function MyOrder() {
   const [loading, setLoading] = useState(true)
   const [loadingPayment, setLoadingPayment] = useState(false)
   const [showOrder, setShowOrder] = useState(true)

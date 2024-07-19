@@ -9,8 +9,8 @@ export const Container = styled.div`
   position: relative;
 
   > h2 {
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 3.2rem;
+    font-weight: 400;
     line-height: 140%;
     font-family: ${({ theme }) => theme.FONTS.Poppins};
     color: ${({ theme }) => theme.COLORS.Light_300};

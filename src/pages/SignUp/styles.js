@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
     height: 100vh;
@@ -26,7 +27,7 @@ export const Container = styled.div`
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
@@ -44,11 +45,11 @@ export const Form = styled.form`
         display: none;
     }
 
-    > a:last-child {
+    > button:last-child {
         align-self: center;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
         .form-title {
             display: block;
             

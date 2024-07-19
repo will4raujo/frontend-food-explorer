@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.header`
   width: 100vw;
@@ -23,11 +23,41 @@ export const Container = styled.header`
     width: 100%;
   }
 
+  .mobile-button-container {
+    position: relative;
+    
+    img {
+      cursor: pointer;
+    }
+
+    div {
+      position: absolute;
+      top: -0.8rem;
+      right: -0.8rem;
+
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+
+      background: ${({ theme }) => theme.COLORS.Tomato_100};
+      color: ${({ theme }) => theme.COLORS.Light_100};
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 1.4rem;
+      font-weight: medium;
+
+      cursor: pointer;
+    }
+  }
+
   .search-container, .desktop-button-container, .logout-icon {
     display: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.XL}) {
     justify-content: center;
 
     .burger-menu, .search-container, .mobile-button-container{
@@ -38,21 +68,25 @@ export const Container = styled.header`
       display: block;
     }
 
-    .desktop-button-container button {
+    .desktop-button-container {
+      display: flex;
+      gap: 3.2rem;
+    }
+
+    .desktop-button-container.last button {
       min-width: 21.5rem;
     }
+
     > svg {
       min-width: 3.2rem;
       min-height: 3.2rem;
     }
   }
 
-  @media screen and (min-width: 1024px) {
     .search-container {
       width: 58rem;
     }
-  }
-`;
+`
 
 export const BurgerMenu = styled.div`
   display: flex;
@@ -72,16 +106,16 @@ export const BurgerMenu = styled.div`
   }
 
   &:hover > span:nth-child(1) {
-    animation: hiddeFromLeft 1s .2s ease-in-out;
+    animation: hiddeFromLeft .1s .1s ease-in-out;
   }
 
   &:hover > span:nth-child(2) {
     transform: rotate(180deg);
-    animation: hiddeFromLeft 1s .5s ease-in-out;
+    animation: hiddeFromLeft .2s .2s ease-in-out;
   }
 
   &:hover > span:nth-child(3) {
-    animation: hiddeFromLeft 1s .8s ease-in-out;
+    animation: hiddeFromLeft .3s .3s ease-in-out;
   }
 
   @keyframes hiddeFromLeft {
@@ -95,7 +129,7 @@ export const BurgerMenu = styled.div`
       width: 100%;
     }
   }
-`;
+`
 
 export const LogOut = styled.button`
 

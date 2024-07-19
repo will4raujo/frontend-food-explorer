@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
-
   margin-right: 1.6rem;
   position: relative;
 
@@ -39,7 +39,7 @@ export const Container = styled.div`
       height: 2.2rem;
        
       > path {
-        fill: ${({ theme, favorite }) => favorite === 'true' ? theme.COLORS.Light_300 : theme.COLORS.Dark_300};
+        fill: ${({ theme, $favorite }) => $favorite === 'true' ? theme.COLORS.Light_300 : theme.COLORS.Dark_300};
       }
     }
   }
@@ -115,7 +115,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
 
     height: 46.2rem;
     width: 30.4rem;

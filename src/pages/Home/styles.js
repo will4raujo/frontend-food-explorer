@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   width: 100%;
@@ -60,7 +61,7 @@ export const Banner = styled.div`
       }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
     max-width: 112rem;
     margin: 13rem auto 0 auto;
     height: 17rem;
@@ -102,7 +103,7 @@ export const Banner = styled.div`
     }
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.XXL}) {
     width: 112rem;
     margin: 13rem auto 0 auto;
     height: 23rem;
@@ -141,7 +142,7 @@ export const Content = styled.div`
 
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
     margin: 27rem auto 0 auto;
   }
 ` 

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   height: 100vh;
@@ -8,9 +9,9 @@ export const Container = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: 11.5rem 1fr 7.7rem;
   grid-template-areas:
-    "header"
-    "main"
-    "footer";
+    'header'
+    'main'
+    'footer';
 
   > main {
     grid-area: main;
@@ -48,7 +49,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
     > main {
       width: 112rem;
       margin: 1rem auto 0 auto;
@@ -73,7 +74,7 @@ export const Container = styled.div`
       }
     }
   }
-`;
+`
 
 export const FileInput = styled.div`
   display: flex;
@@ -108,7 +109,8 @@ export const FileInput = styled.div`
       display: none;
     }
   }
-`;
+`
+
 export const SubmitButton = styled.button`
   height: 4.8rem;
   width: 100%;
@@ -124,7 +126,8 @@ export const SubmitButton = styled.button`
   color: ${({ theme }) => theme.COLORS.Light_100};
 
   cursor: pointer;
-`;
+`
+
 export const GhostButton = styled.button`
   height: 4.8rem;
   width: 100%;
@@ -140,4 +143,4 @@ export const GhostButton = styled.button`
   color: ${({ theme }) => theme.COLORS.Light_100};
 
   cursor: pointer;
-`;
+`

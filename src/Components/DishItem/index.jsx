@@ -1,10 +1,10 @@
-import { Container } from './styles';
+import { Container } from './styles'
 
 export function DishItem({ image, name, price, quantity, handleRemoveItem, removeText }) {
   return (
     <Container>
         <div>
-          <img src={image} alt="Imagem do pedido" />
+          <img src={image} alt='Imagem do pedido' />
         </div>
         <div>
           <div>

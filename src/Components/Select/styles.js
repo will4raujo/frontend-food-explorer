@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import arrowIcon from "../../assets/icons/arrow.svg";
+import styled from 'styled-components'
+import arrowIcon from '../../assets/icons/arrow.svg'
 
 export const Container = styled.div`
   display: flex;
@@ -54,9 +54,9 @@ export const Container = styled.div`
     height: 8px;
     border-radius: 50%;
     background-color: ${({ theme, $semaphore }) => {
-      if ($semaphore === 'pending') return theme.COLORS.Tomato_300;
-      if ($semaphore === 'preparing') return theme.COLORS.Carrot_100;
-      if ($semaphore === 'finished') return theme.COLORS.Mint_100;
+      if ($semaphore === 'pending') return theme.COLORS.Tomato_300
+      if ($semaphore === 'preparing') return theme.COLORS.Carrot_100
+      if ($semaphore === 'finished') return theme.COLORS.Mint_100
     }};
     z-index: 10;
   }

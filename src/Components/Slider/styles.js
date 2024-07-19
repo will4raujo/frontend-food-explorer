@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   margin: 0px 0px 4.8rem 0px;
@@ -8,8 +9,8 @@ export const Container = styled.div`
   position: relative;
 
   > h2 {
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 3.2rem;
+    font-weight: 400;
     line-height: 140%;
     font-family: ${({ theme }) => theme.FONTS.Poppins};
     color: ${({ theme }) => theme.COLORS.Light_300};
@@ -35,15 +36,16 @@ export const Container = styled.div`
       }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
     max-width: 112rem;
     margin: 0 auto 4.8rem auto;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
     
     > div::before {
       content: '';
+      display: ${({ $loading }) => $loading ? 'none' : 'block'};
       position: absolute;
       width: 30rem;
       height: 47rem;
@@ -63,6 +65,7 @@ export const Container = styled.div`
 
     > div::after {
       content: '';
+      display: ${({ $loading }) => $loading ? 'none' : 'block'};
       position: absolute;
       width: 30rem;
       height: 47rem;
@@ -80,10 +83,10 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.XXL}) {
 
     > h2 {
      font-size: 3.2rem;
     }
   }
-`;
+`

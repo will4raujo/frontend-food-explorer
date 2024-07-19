@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   margin: .8rem;
@@ -68,7 +68,6 @@ export const Container = styled.div`
       height: 100%;
       padding: .8rem 1.6rem .8rem 0;
 
-      
       border: none;
       background: transparent;
       

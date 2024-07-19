@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -28,68 +28,91 @@ export const Container = styled.div`
       line-height: 140%;
     }
 
-    table {
-      width: 100%;
-      border-spacing: 0; 
+  }
+`
+
+export const Table = styled.table`
+  width: 100%;
+  border-spacing: 0; 
+
+  thead {
+    font-size: 1.4rem;
+    color: ${({ theme }) => theme.COLORS.Light_400};
     
-      thead {
-        font-size: 1.4rem;
-        color: ${({ theme }) => theme.COLORS.Light_400};
-        
-        th {
-          height: 6.4rem;          
-          border-top: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
-          border-right: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
-          text-align: start;
-          padding: 2.4rem;          
-        }
-        
-        th:first-child {
-          border-top-left-radius: 0.8rem;
-          border-left: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
-        }
-
-        th:last-child {
-          border-top-right-radius: 0.8rem;
-        }
-
-      }
-
-      tbody {
-        tr {
-          height: 8rem;
-          
-          td {
-            border: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
-            border-bottom: none;
-            border-left: none;
-            padding: 2.1rem 2.4rem;
-            font-size: 1.4rem;
-            color: ${({ theme }) => theme.COLORS.Light_400};
-          }
-
-          td:first-child {
-            border-left: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
-          }
-        }
-
-        tr td:first-child {
-          width: 22.3rem;
-        }
-
-        tr:last-child td {
-          border-bottom: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
-        }
-
-        tr:last-child td:first-child {
-          border-bottom-left-radius: 0.8rem;
-        }
-
-        tr:last-child td:last-child {
-          border-bottom-right-radius: 0.8rem;
-        }
-      }
+    th {
+      height: 6.4rem;          
+      border-top: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
+      border-right: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
+      text-align: start;
+      padding: 2.4rem;          
     }
+    
+    th:first-child {
+      border-top-left-radius: 0.8rem;
+      border-left: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
+    }
+
+    th:last-child {
+      border-top-right-radius: 0.8rem;
+    }
+
+  }
+
+  tbody {
+  }
+`
+
+export const Tr = styled.tr`
+  height: 8rem;
+  
+  td {
+    border: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
+    border-bottom: none;
+    border-left: none;
+    padding: 2.1rem 2.4rem;
+    font-size: 1.4rem;
+    color: ${({ theme }) => theme.COLORS.Light_400};
+  }
+
+  td:first-child {
+    border-left: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
+  }
+
+  .table-status {
+    position: relative;
+    margin-left: 1.6rem;
+  
+    &::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: -16px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: ${({ theme, $semaphore }) => {
+    if ($semaphore === 'pending') return theme.COLORS.Tomato_300
+    if ($semaphore === 'preparing') return theme.COLORS.Carrot_100
+    if ($semaphore === 'finished') return theme.COLORS.Mint_100
+  }};
+      z-index: 10;
+    }
+  }
+
+  td:first-child {
+    width: 22.3rem;
+  }
+
+  &:last-child td {
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.Dark_1000};
+  }
+
+  &:last-child td:first-child {
+    border-bottom-left-radius: 0.8rem;
+  }
+
+  &:last-child td:last-child {
+    border-bottom-right-radius: 0.8rem;
   }
 `
 
@@ -109,5 +132,31 @@ export const Card = styled.div`
 
   p {
     text-align: start;
+  }
+
+  > div .mobile-row-one {
+    display: flex;
+    justify-content: start;
+    gap: 3.1rem;
+
+    div:nth-child(2) {
+      position: relative;
+      margin-left: 1.6rem;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: -16px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: ${({ theme, $semaphore }) => {
+    if ($semaphore === 'pending') return theme.COLORS.Tomato_300
+    if ($semaphore === 'preparing') return theme.COLORS.Carrot_100
+    if ($semaphore === 'finished') return theme.COLORS.Mint_100
+  }};
+        z-index: 10;
+      }
+    }
   }
 `

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   grid-area: footer;
@@ -30,8 +31,8 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MB}) {
     justify-content: space-around;
     padding: 0 2.4rem;
   }
-`;
+`

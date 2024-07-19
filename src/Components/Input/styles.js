@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -28,4 +28,4 @@ export const Container = styled.div`
       box-shadow: 0 0 0 1px ${({ theme }) => theme.COLORS.Light_400};
     }
   }
-`;
+`

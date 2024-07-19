@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   width: 100vw;
@@ -9,9 +10,9 @@ export const Container = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: 11.5rem 1fr 7.7rem;
   grid-template-areas:
-    "header"
-    "content"
-    "footer";
+    'header'
+    'content'
+    'footer';
 
   > main {
     grid-area: content;
@@ -99,7 +100,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
     > main {
       flex-direction: row;
       justify-content: center;
@@ -123,4 +124,4 @@ export const Container = styled.div`
       }
     }
   }
-`;
+`

@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -49,7 +50,7 @@ export const Orders = styled.div`
   }
   
 
-  @media (min-width: 1024px) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
     
   }
 `
@@ -199,7 +200,7 @@ export const Payment = styled.div`
       }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
       max-width: 53rem;
     }
 `

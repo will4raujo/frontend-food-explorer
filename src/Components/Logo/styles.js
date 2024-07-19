@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakpoints'
 
 export const Container = styled.div`
   display: flex;
@@ -31,7 +32,7 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.Cake_200};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${DEVICE_BREAKPOINTS.MB}) {
     width: 20rem;
     flex-direction: column;
 
@@ -49,4 +50,4 @@ export const Container = styled.div`
       }
     }
   }
-`;
+`

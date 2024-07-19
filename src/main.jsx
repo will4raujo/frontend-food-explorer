@@ -5,8 +5,8 @@ import GlobalStyles from './styles/global'
 import theme from './styles/theme'
 
 import { Routes } from './routes'
-import { AuthProvider } from './hooks/auth'
-import { CartProvider } from './hooks/cart'
+import { AuthProvider } from './contexts/AuthProvider'
+import { CartProvider } from './contexts/CartProvider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -108,7 +108,7 @@ export function MyOrders() {
     }
 
     return () => clearInterval(intervalId)
-  }, [orderId, orderHasStarted, status])
+  }, [orderId, orderHasStarted, status, clearCart])
 
   useEffect(() => {
     const handleBeforeUnload = () => {

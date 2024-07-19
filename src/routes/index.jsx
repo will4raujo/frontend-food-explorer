@@ -15,7 +15,7 @@ export function Routes() {
           signOut()
         }
       })
-  }, [])
+  }, [signOut])
 
   return (
     <BrowserRouter>

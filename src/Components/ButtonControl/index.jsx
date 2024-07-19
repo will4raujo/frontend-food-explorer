@@ -27,7 +27,6 @@ export function ButtonControl({ onQuantityChange, clearQuantity }) {
   useEffect(() => {
     if (clearQuantity) {
       setQuantity(0)
-      clearQuantity = false
     }
   }, [clearQuantity])
 

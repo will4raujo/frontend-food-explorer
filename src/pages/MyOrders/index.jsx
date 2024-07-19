@@ -5,6 +5,7 @@ import { Footer } from "../../Components/Footer";
 import { Button } from "../../Components/Button";
 import { Input } from "../../Components/Input";
 import { DishItem } from "../../Components/DishItem";
+import { Loading } from "../../Components/Loading";
 import api from "../../services/api";
 import creditCardIcon from "../../assets/icons/credit-card.svg";
 import pixIcon from "../../assets/icons/pix.svg";
@@ -16,6 +17,8 @@ import { useCart } from "../../hooks/cart";
 import toastr from "toastr";
 
 export function MyOrders() {
+  const [loading, setLoading] = useState(true);
+  const [loadingPayment, setLoadingPayment] = useState(false);
   const [showOrder, setShowOrder] = useState(true);
   const [showPayments, setShowPayments] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('pix');
@@ -41,7 +44,7 @@ export function MyOrders() {
   const handleFinishPayment = (e) => {
     e.preventDefault();
     setStatus('pending');
-
+    setLoadingPayment(true);
     api.post('/orders', {
       dishes: dishes.map(dish => ({
         id: dish.id,
@@ -55,8 +58,10 @@ export function MyOrders() {
       localStorage.setItem('@foodexplorer:cart', JSON.stringify({ id: response.data.id, items: cart.items }));
       setOrderId(response.data.id);
       setOrderHasStarted(true);
+      setLoadingPayment(false);
     }).catch(error => {
       toastr.error(error);
+      setLoadingPayment(false);
     });
   };
 
@@ -152,7 +157,7 @@ export function MyOrders() {
               <Input type="text" text="Validade" />
               <Input type="text" text="CVC" />
             </div>
-            <Button title="Finalizar Pagamento" onClick={handleFinishPayment} />
+            <Button title="Finalizar Pagamento" onClick={handleFinishPayment}  loading={loadingPayment} />
           </form>
         );
     }
@@ -171,6 +176,7 @@ export function MyOrders() {
 
       const dishData = await Promise.all(dishPromises);
       setDishes(dishData);
+      setLoading(false);
     };
     fetchDishes();
   }, [cart.items]);
@@ -207,17 +213,21 @@ export function MyOrders() {
           {showOrder &&
             <Orders>
               <h1>Meu pedido</h1>
-              <div>
-                {dishes.map((dish, index) => (
-                  <DishItem key={index} image={dish.image_url} name={dish.name} price={dish.price} quantity={dish.quantity} handleRemoveItem={() => handleRemoveItem(dish.id)} removeText={'Excluir'} />
-                ))}
+              {loading ? <Loading width={100} height={100} /> : (
+                <>
+                  <div>
+                    {dishes.map((dish, index) => (
+                      <DishItem key={index} image={dish.image_url} name={dish.name} price={dish.price} quantity={dish.quantity} handleRemoveItem={() => handleRemoveItem(dish.id)} removeText={'Excluir'} />
+                    ))}
 
-                {dishes.length === 0 && <p>Nenhum item no carrinho</p>}
-              </div>
-              <p>Total: R$ {total.toFixed(2)}</p>
-              { !showPayments &&
-                <Button title="Avançar" onClick={handleShowPayments} />
-              }
+                    {dishes.length === 0 && <p>Nenhum item no carrinho</p>}
+                  </div>
+                  {dishes.length !== 0 && <p>Total: R$ {total.toFixed(2)}</p>}
+                  { !showPayments &&
+                    <Button title="Avançar" onClick={handleShowPayments} />
+                  }
+                </>
+              )}
             </Orders>
           }
           {showPayments && dishes.length > 0 && (

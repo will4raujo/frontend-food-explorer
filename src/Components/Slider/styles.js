@@ -45,6 +45,7 @@ export const Container = styled.div`
     
     > div::before {
       content: '';
+      display: ${({ $loading }) => $loading ? 'none' : 'block'};
       position: absolute;
       width: 30rem;
       height: 47rem;
@@ -64,6 +65,7 @@ export const Container = styled.div`
 
     > div::after {
       content: '';
+      display: ${({ $loading }) => $loading ? 'none' : 'block'};
       position: absolute;
       width: 30rem;
       height: 47rem;

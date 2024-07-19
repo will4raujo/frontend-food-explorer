@@ -5,21 +5,23 @@ import { Container } from "./styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import { Loading } from '../Loading'
 
 export function Slider({category}) { 
   const [dishes, setDishes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get(`/dishes/category?c=${category.value}`).then(response => {
-      setDishes(response.data.map(dish => {
-        return {
-          ...dish,
-          price: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(dish.price),
-          image_url: ` ${api.defaults.baseURL}/files/${dish.image_url}`
-        }
-      }));
-    }
-    );
+      api.get(`/dishes/category?c=${category.value}`).then(response => {
+        setDishes(response.data.map(dish => {
+          setLoading(false);
+          return {
+            ...dish,
+            price: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(dish.price),
+            image_url: ` ${api.defaults.baseURL}/files/${dish.image_url}`
+          }
+        }));
+      })
   }, []);
 
   const navigate = useNavigate()
@@ -62,28 +64,31 @@ export function Slider({category}) {
   }, []);
 
   return (
-    <Container>
-      <h2>{category.label}</h2>
-      <Splide
-        hasTrack={false}
-        options={options}                                 
-      >
-        <SplideTrack>
-          {dishes.map((dish, index) => (
-            <SplideSlide key={`dish_${index}`}>
-              <Card
-                dishId={dish.id}
-                onClick={() => navigate(`/dish/${dish.id}`)}
-                image={dish.image_url}
-                title={dish.name}
-                description={dish.description}
-                price={dish.price}
-                favorite={dish.isFavorite}
-              />
-            </SplideSlide>
-          ))}
-        </SplideTrack>
-      </Splide>
+    <Container $loading={loading}>
+      {loading ? (
+        <Loading height={100} width={100}/>
+      ) : (
+        <>
+        <h2>{category.label}</h2>
+        <Splide hasTrack={false} options={options}>
+          <SplideTrack>
+            {dishes.map((dish, index) => (
+              <SplideSlide key={`dish_${index}`}>
+                <Card
+                  dishId={dish.id}
+                  onClick={() => navigate(`/dish/${dish.id}`)}
+                  image={dish.image_url}
+                  title={dish.name}
+                  description={dish.description}
+                  price={dish.price}
+                  favorite={dish.isFavorite}
+                  />
+              </SplideSlide>
+            ))}
+          </SplideTrack>
+        </Splide>
+      </>
+      )}
     </Container>
   );
 }

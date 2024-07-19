@@ -8,12 +8,15 @@ import { ButtonText } from "../../Components/ButtonText";
 import { Section } from "../../Components/Section";
 import { TextArea } from "../../Components/TextArea";
 import { PiCaretLeftLight, PiUploadSimple } from "react-icons/pi";
+import { Loading } from "../../Components/Loading";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import toastr from 'toastr';
 import api from "../../services/api";
 
 export function DishForm() {
+  const [loading, setLoading] = useState(false);
+  const [loadingDish, setLoadingDish] = useState(true);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -73,12 +76,13 @@ export function DishForm() {
     formData.append("category", category);
     formData.append("price", parseFloat(price.replace(/\D/g, '')) / 100);
     formData.append("description", description);
-    formData.append("ingredients", JSON.stringify(ingredients)); // Converta o array para string
+    formData.append("ingredients", JSON.stringify(ingredients));
     
     if (imageFile) {
         formData.append("image", imageFile);
     }
     try {
+      setLoading(true);
       if (id === 'new') {
           await api.post("/dishes", formData, {
               headers: {
@@ -99,6 +103,8 @@ export function DishForm() {
       }
   } catch (error) {
       console.error(error);
+      toastr.error("Erro ao salvar prato");
+      setLoading(false);
   }
   }
 
@@ -112,6 +118,7 @@ export function DishForm() {
         navigate('/');
       } catch (error) {
         console.error(error);
+        toastr.error("Erro ao excluir prato");
       }
     }
   }
@@ -127,6 +134,7 @@ export function DishForm() {
         setDescription(data.description);
       }
       fetchDish();
+      setLoadingDish(false);
     }
   }, [id]);
 
@@ -136,63 +144,67 @@ export function DishForm() {
       <main>
         <ButtonText icon={PiCaretLeftLight} onClick={handleGoBack}>voltar</ButtonText>
         <h1>Novo prato</h1>
-        <form>
-          <div className="col-3">
-            <FileInput>
-              <h2>Imagem do prato</h2>
-              <label htmlFor="image">
-                <PiUploadSimple size={24} />
-                Selecione imagem
-                <input type="file" id="image" onChange={handleUploadImage} />
-              </label>
-            </FileInput>
-            <Input type="text" name="name" text={"Nome do prato"} placeholder={"Nome do prato"} value={name} onChange={(e) => setName(e.target.value)} />
-            <Select 
-              title="Categoria" 
-              name="category" 
-              value={category} 
-              setValue={setCategory} 
-              options={[
-                { value: "meals", label: "Refeições" },
-                { value: "desserts", label: "Sobremesas" },
-                { value: "drinks", label: "Bebidas" },
-              ]} 
-            />
-          </div>
-          <div className="col-2">
-            <Section title="Ingredientes">
-              {ingredients.map((_, index) => (
-                <Ingredient
-                  key={index}
-                  placeholder={"Ingrediente"}
-                  onClick={() => removeIngredient(index)}
-                  value={ingredients[index]}
+        {(!loadingDish || !loading) ? (
+          <>
+            <form>
+              <div className="col-3">
+                <FileInput>
+                  <h2>Imagem do prato</h2>
+                  <label htmlFor="image">
+                    <PiUploadSimple size={24} />
+                    Selecione imagem
+                    <input type="file" id="image" onChange={handleUploadImage} />
+                  </label>
+                </FileInput>
+                <Input type="text" name="name" text={"Nome do prato"} placeholder={"Nome do prato"} value={name} onChange={(e) => setName(e.target.value)} />
+                <Select 
+                  title="Categoria" 
+                  name="category" 
+                  value={category} 
+                  setValue={setCategory} 
+                  options={[
+                    { value: "meals", label: "Refeições" },
+                    { value: "desserts", label: "Sobremesas" },
+                    { value: "drinks", label: "Bebidas" },
+                  ]} 
                 />
-              ))}
-              <Ingredient placeholder={"Adicionar"} isNew onClick={addIngredient} onChange={(e) => setIngredient(e.target.value)} value={ingredient} />
-            </Section>
-            <Input
-              type="text"
-              name="price"
-              text={"Preço"}
-              placeholder={"R$ 00,00"}
-              onChange={handlePriceChange}
-              value={price}
-            />
-          </div>
-          <TextArea
-            text={"Descrição"}
-            placeholder={
-              "Fale brevemente sobre o prato, seus ingredientes e composição"
-            }
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </form>
-        <div className="action-buttons">
-          {id !== 'new' && <GhostButton onClick={handleDelete}>Excluir prato</GhostButton>}
-          <SubmitButton onClick={handleSubmit}>Salvar alterações</SubmitButton>
-        </div>
+              </div>
+              <div className="col-2">
+                <Section title="Ingredientes">
+                  {ingredients.map((_, index) => (
+                    <Ingredient
+                      key={index}
+                      placeholder={"Ingrediente"}
+                      onClick={() => removeIngredient(index)}
+                      value={ingredients[index]}
+                    />
+                  ))}
+                  <Ingredient placeholder={"Adicionar"} isNew onClick={addIngredient} onChange={(e) => setIngredient(e.target.value)} value={ingredient} />
+                </Section>
+                <Input
+                  type="text"
+                  name="price"
+                  text={"Preço"}
+                  placeholder={"R$ 00,00"}
+                  onChange={handlePriceChange}
+                  value={price}
+                />
+              </div>
+              <TextArea
+                text={"Descrição"}
+                placeholder={
+                  "Fale brevemente sobre o prato, seus ingredientes e composição"
+                }
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </form>
+            <div className="action-buttons">
+              {id !== 'new' && <GhostButton onClick={handleDelete}>Excluir prato</GhostButton>}
+              <SubmitButton onClick={handleSubmit}>{loading ? <Loading  width={32} height={32} /> : 'Salvar alterações'}</SubmitButton>
+            </div>
+          </>
+        ) : <Loading width={100} height={100} /> }
       </main>
       <Footer />
     </Container>

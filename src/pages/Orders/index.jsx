@@ -39,12 +39,16 @@ export function Orders() {
     api.get('/orders')
       .then(response => {
         const formattedOrders = response.data.map(order => {
-          order.created_at = new Date(order.created_at).toLocaleString('pt-BR', {
-            timeZone: 'UTC',
+          let orderDate = new Date(order.created_at);
+          orderDate.setHours(orderDate.getHours() - 3);
+
+          order.created_at = orderDate.toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo',
             dateStyle: 'short',
             timeStyle: 'short'
-          }).replace(/\/\d{4}/, '').replace(/:/g, 'h').replace(',', ' às')
-          order.id = order.id.toString().padStart(6, '0')
+          }).replace(/\/\d{4}/, '').replace(/:/g, 'h').replace(',', ' às');
+
+          order.id = order.id.toString().padStart(6, '0');
           return order
         })
         setOrders(formattedOrders)

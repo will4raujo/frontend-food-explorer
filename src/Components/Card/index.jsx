@@ -21,6 +21,9 @@ export function Card({ dishId, image, title, description, price, onClick, favori
   }
 
   const handleSendToCart = () => {
+    if (quantity === 0) {
+      toastr.error('Ao menos uma unidade deve ser adicionada ao carrinho')
+    }
     addToCart({dishId, quantity})
     setClearQuantity(true)
     toastr.success('Item adicionado ao carrinho')

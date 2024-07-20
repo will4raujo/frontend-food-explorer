@@ -20,15 +20,15 @@ export function Favorites() {
     async function getFavorites() {
       const response = await api.get('/favorites')
       setDishes(response.data.map(dish => {
-        setLoading(false)
         return {
           ...dish,
           image_url: `${api.defaults.baseURL}/files/${dish.image_url}`
         }
       }))
     }
-
+    
     getFavorites()
+    setLoading(false)
   }, [])
 
   return (
@@ -39,7 +39,8 @@ export function Favorites() {
           <h1>Meus favoritos</h1>
           <div>
             {loading && <Loading height={100} width={100} />}
-            {(dishes.length === 0 && !loading) ? <p>Nenhum prato como favorito</p> : dishes.map((dish, index) => (
+            {dishes.length === 0 && !loading && <p>Nenhum prato como favorito</p>}
+            {dishes.length !== 0 && !loading && dishes.map((dish, index) => (
               <DishItem key={index} image={dish.image_url} name={dish.name} handleRemoveItem={() => handleRemoveItem(dish.id)} removeText={'Remover dos favoritos'} />
             ))}
           </div>

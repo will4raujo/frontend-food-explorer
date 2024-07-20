@@ -1,8 +1,36 @@
-# React + Vite
+# Frontend Food Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Frontend Food Explorer project! This application serves as the frontend for a food exploration and ordering platform, allowing users to browse and order various dishes.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get started with this project, you'll need to clone the repository and install the required dependencies.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v14.x or later recommended)
+- [Git](https://git-scm.com/)
+
+## Steps
+
+1. **Clone the repository:**
+
+```sh
+  git clone https://github.com/will4raujo/frontend-food-explorer.git
+```
+
+2. **Install Node Dependence**
+
+```sh
+  npm install
+```
+
+## Usage
+
+To start the development server and view the application in your browser, run:
+
+```sh
+  npm run dev
+```
+
+This will start the app on http://localhost:5173.

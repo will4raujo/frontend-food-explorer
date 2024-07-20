@@ -34,3 +34,14 @@ To start the development server and view the application in your browser, run:
 ```
 
 This will start the app on http://localhost:5173.
+
+## Testing
+
+For testing purposes, you can use the following credentials to log in:
+* **Admin User:**
+  * Email: `admin@teste.com`
+  * Password: `123456`
+
+* **Customer User:**
+  * Email: `user@teste.com`
+  * Password: `123456`

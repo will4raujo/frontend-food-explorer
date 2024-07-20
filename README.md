@@ -45,3 +45,9 @@ For testing purposes, you can use the following credentials to log in:
 * **Customer User:**
   * Email: `user@teste.com`
   * Password: `123456`
+
+## Production Enviroment
+
+You can access the project by the domain (https://master--foodexplorerwa.netlify.app/)
+
+Thank you and never stop learning!

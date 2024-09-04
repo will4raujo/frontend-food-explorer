@@ -91,7 +91,7 @@ export const FileInput = styled.div`
   > label {
     height: 4.8rem;
     width: 100%;
-    padding: 1.2rem 2.4rem;
+    padding: 1.2rem;
 
     display: flex;
     align-items: center;

@@ -19,14 +19,11 @@ export function SignIn() {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        
         if (!email || !password) {
             toastr.error('Preencha todos os campos')
         }
-        
         setLoading(true)
         signIn({ email, password })
-        setLoading(false)
     }
 
     return (

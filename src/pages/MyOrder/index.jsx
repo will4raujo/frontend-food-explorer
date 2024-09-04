@@ -185,7 +185,8 @@ export function MyOrder() {
     const totalValue = dishes.reduce((acc, dish) => {
       return acc + dish.price * dish.quantity
     }, 0)
-    setTotal(totalValue)
+    const formatedTotal = totalValue.toFixed(2).replace('.', ',')
+    setTotal(formatedTotal)
   }, [dishes])
 
   useEffect(() => {
@@ -222,7 +223,7 @@ export function MyOrder() {
 
                     {dishes.length === 0 && <p>Nenhum item no carrinho</p>}
                   </div>
-                  {dishes.length !== 0 && <p>Total: R$ {total.toFixed(2)}</p>}
+                  {dishes.length !== 0 && <p>Total: R$ {total}</p>}
                   { !showPayments &&
                     <Button title='Avançar' onClick={handleShowPayments} />
                   }

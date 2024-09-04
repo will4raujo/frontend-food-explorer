@@ -130,6 +130,7 @@ export function DishForm() {
     if ( id !== 'new') {
       const fetchDish = async () => {
         const { data } = await api.get(`/dishes/${id}`)
+        setImageFile(api.defaults.baseURL + '/files/' + data.image_url)
         setName(data.name)
         setCategory(data.category)
         setIngredients(data.ingredients.map(ingredient => ingredient.name))
@@ -155,7 +156,7 @@ export function DishForm() {
                   <h2>Imagem do prato</h2>
                   <label htmlFor='image'>
                     <PiUploadSimple size={24} />
-                    Selecione imagem
+                    {imageFile ? 'Imagem selecionada' : 'Selecione imagem'}
                     <input type='file' id='image' onChange={handleUploadImage} />
                   </label>
                 </FileInput>
